@@ -1,6 +1,9 @@
-import Id from '../img/icon/sprite.svg'
+import { TrackListSkeleton } from './trackList-skeleton'
+import Id from './img/sprite.svg'
 
-export function TrackList() {
+
+export function TrackList({skeleton}) {
+    if(skeleton) {return <TrackListSkeleton/>}
     return(
         <div className="content__playlist playlist">
                             <div className="playlist__item">

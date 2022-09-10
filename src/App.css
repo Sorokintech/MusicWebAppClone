@@ -296,6 +296,7 @@ body {
   border: 1px solid #FFFFFF;
   border-radius: 60px;
   padding: 6px 20px;
+  margin-right: 10px;
 }
 
 .filter__button:not(:last-child) {
@@ -862,4 +863,111 @@ body {
 
 .volume__progress-line {
   width: 109px;
+}
+
+.author-list {
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 34px;
+gap: 10px;
+
+position: absolute;
+width: 248px;
+height: 305px;
+background: #313131;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 12px;
+}
+.author-list-actual {
+  overflow-y: scroll;
+  padding-right: 25px;
+}
+.author-list-actual::-webkit-scrollbar {
+  width: 6px;         /* width of the entire scrollbar */
+}
+
+.author-list-actual::-webkit-scrollbar-track {
+  background: #4B4949;        /* color of the tracking area */
+}
+
+.author-list-actual::-webkit-scrollbar-thumb {
+  background-color: #FFFFFF;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 15px solid #FFFFFF;  /* creates padding around scroll thumb */
+}
+
+.author-list-item {
+  width: 150px;
+
+  font-family: 'StratosSkyeng';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  padding-bottom: 28px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  color: #FFFFFF;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  
+}
+.author-list-item:hover {
+width: 150px;
+
+font-family: 'StratosSkyeng';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+
+text-decoration-line: underline;
+font-feature-settings: 'pnum' on, 'lnum' on;
+
+color: #B672FF;
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
+.filter-year {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 34px;
+gap: 14px;
+
+position: absolute;
+width: 350px;
+height: 92px;
+
+background: #313131;
+border-radius: 12px;
+}
+.filter-radio {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 10px;
+}
+.first-radio {
+  margin-right: 20px;
+}
+
+.is-active {
+  border-color: #D9B6FF;
+  color: #D9B6FF;
+  cursor: pointer;
+}
+input[type='radio'] {
+  width: 20px;
+  height: 20px;
+  /* accent-color: #313131;
+  background-color: #313131; */
+}
+input[type='radio']:checked {
+  accent-color: #FFFFFF;
 }

@@ -1,12 +1,9 @@
-import playlistOne from '../img/playlist01.png'
-import playlistTwo from '../img/playlist02.png'
-import playlistThree from '../img/playlist03.png'
-export function SideBar() {
+export function SideBarSkeleton() {
     return(
         <div className="main__sidebar sidebar">
         <div className="sidebar__personal">
-                        <p className="sidebar__personal-name">Sergey.Ivanov</p>
-                        <div className="sidebar__avatar">
+                        <p className="sidebar__personal-name"></p>
+                        <div className="sidebar__avatar-skeleton">
                             
                         </div>
                     </div>
@@ -14,17 +11,17 @@ export function SideBar() {
                         <div className="sidebar__list">
                             <div className="sidebar__item">
                                 <a className="sidebar__link" href="#">
-                                    <img className="sidebar__img" src={playlistOne}  alt="day's playlist" />
+                                    <div className="sidebar__img-skeleton" src='' alt="day's playlist" />
                                 </a>
                             </div>
                             <div className="sidebar__item">
                                 <a className="sidebar__link" href="#">
-                                    <img className="sidebar__img" src={playlistTwo} alt="day's playlist" />
+                                <div className="sidebar__img-skeleton"  alt="day's playlist" />
                                 </a>
                             </div>
                             <div className="sidebar__item">
                                 <a className="sidebar__link" href="#">
-                                    <img className="sidebar__img" src={playlistThree} alt="day's playlist"/>
+                                <div className="sidebar__img-skeleton" alt="day's playlist"/>
                                 </a>
                             </div>
                         </div>
