@@ -1,6 +1,8 @@
-import Id from '../img/icon/sprite.svg'
+import { BottomPlayerSkeleton } from './bottomPlayer-skeleton'
+import Id from './img/sprite.svg'
 
-export function ButtomPlayer() {
+export function BottomPlayer({skeleton}) {
+    if (skeleton) {return <BottomPlayerSkeleton/>}
     return(
         <div className="bar__content">
                     <div className="bar__player-progress"></div>
@@ -78,5 +80,6 @@ export function ButtomPlayer() {
                         </div>
                     </div>
                 </div>
-    )
+    ) 
+
 }
