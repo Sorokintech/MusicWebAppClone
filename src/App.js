@@ -1,16 +1,14 @@
-import './App.css';
 import './fonts/stylesheet.css';
-import './components/sideBar/sideBar-skeleton.css';
-import './components/bottomPlayer/bottomPlayer-skeleton.css'
-import './components/trackList/trackList-skeleton.css'
-import { BottomPlayer } from './components/bottomPlayer/bottomPlayer';
-import { NavBar } from './components/navbar/navbar';
-import { PlaylistTitle } from './components/playlistTitle';
-import { SearchBar } from './components/search';
-import { SideBar } from './components/sideBar/sideBar';
-import { TrackList } from './components/trackList/trackList';
-import { TrackNavBar } from './components/trackNav';
+import StyleCSS from './css/style.module.css'
+import { BottomPlayer } from './components/bottomPlayer/jsx/bottomPlayer';
+import { NavBar } from './components/navbar/jsx/navbar';
+import { PlaylistTitle } from './components/playlistTitle/jsx/playlistTitle';
+import { SearchBar } from './components/search/jsx/search';
+import { SideBar } from './components/sideBar/jsx/sideBar';
+import { TrackList } from './components/trackList/jsx/trackList';
+import { TrackNavBar } from './components/trackNav/jsx/trackNav';
 import { useEffect, useState } from 'react';
+
 
 
 
@@ -23,16 +21,16 @@ function App() {
     }, [])
   return (
 
-    <div className='wrapper'>
-      <div className='container'>
-        <div className='main'>
+    <div className={StyleCSS.wrapper}>
+      <div className={StyleCSS.container}>
+        <div className={StyleCSS.main}>
               <NavBar />
-              <div className="main__centerblock centerblock">
+              <div className={`${StyleCSS.main__centerBlock} ${StyleCSS.centerBlock}`}>
               <SearchBar />
-              <h2 className='centerblock__h2'>Треки</h2>
+              <h2 className={StyleCSS.centerBlock__h2}>Треки</h2>
               <TrackNavBar />
               <PlaylistTitle/>
-              <TrackList skeleton = {pending}/>
+              <TrackList skeleton = {pending} />
               </div>
               <SideBar skeleton = {pending}/>
               <div className="bar">
@@ -45,3 +43,4 @@ function App() {
   )
 }
 export default App;
+
