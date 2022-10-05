@@ -307,7 +307,6 @@
     fill: transparent;
     stroke: #696969;
   }
-  
   .volume__content {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -323,7 +322,6 @@
         -ms-flex-pack: end;
             justify-content: end;
   }
-  
   .volume__image {
     width: 13px;
     height: 18px;
