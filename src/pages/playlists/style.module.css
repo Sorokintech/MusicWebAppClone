@@ -1,0 +1,26 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 70px;
+}
+
+.center__playlist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    padding-top: 20px;
+}
+.playlist__item {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    text-decoration: none;
+    color: #fff;
+    gap: 40px;
+}
+.playlist__item:hover {
+    color:rgb(90, 60, 138);
+}

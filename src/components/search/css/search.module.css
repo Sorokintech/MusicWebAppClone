@@ -1,7 +1,14 @@
-
+.light {
+  --background-color: #ffffff;
+  --color:#181818;
+}
+.dark {
+  --background-color: #181818;
+  --color:#ffffff;
+}
 .centerblock__search {
     width: 100%;
-    border-bottom: 1px solid #4E4E4E;
+    border-bottom: 1px solid var(--color);
     margin-bottom: 51px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -13,33 +20,35 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+            color: var(--color);
   }
   
 .search__svg {
     width: 17px;
     height: 17px;
     margin-right: 5px;
-    stroke: #FFFFFF;
-    fill: transparent;
+    stroke: var(--color);
+    fill: var(--background-color);
+    
   }
   
   .search__text {
     -webkit-box-flex: 100;
         -ms-flex-positive: 100;
             flex-grow: 100;
-    background-color: transparent;
+    background-color: var(--background-color);
     border: none;
     padding: 13px 10px 14px;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--color);
   }
   
   .search__text::-webkit-input-placeholder {
-    background-color: transparent;
-    color: #FFFFFF;
+    background-color: var(--background-color);
+    color: var(--color);
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -47,8 +56,8 @@
   }
   
   .search__text:-ms-input-placeholder {
-    background-color: transparent;
-    color: #FFFFFF;
+    background-color: var(--background-color);
+    color: var(--color);
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -56,8 +65,8 @@
   }
   
   .search__text::-ms-input-placeholder {
-    background-color: transparent;
-    color: #FFFFFF;
+    background-color: var(--background-color);
+    color: var(--color);
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -65,8 +74,8 @@
   }
   
   .search__text::placeholder {
-    background-color: transparent;
-    color: #FFFFFF;
+    background-color: var(--background-color);
+    color:var(--color);
     font-style: normal;
     font-weight: 400;
     font-size: 16px;

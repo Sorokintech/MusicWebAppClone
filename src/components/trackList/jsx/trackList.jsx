@@ -1,11 +1,13 @@
 import { TrackListSkeleton } from '../jsx/trackList-skeleton'
 import Id from '../img/sprite.svg'
 import TrackListCSS from '../css/trackList.module.css'
+import { useThemeContext } from '../../theme/theme';
 
 export function TrackList({skeleton}) {
+    const {theme} = useThemeContext();
     if(skeleton) {return <TrackListSkeleton/>}
     return(
-        <div className={`${TrackListCSS.content__playlist} ${TrackListCSS.playlist}`}>
+        <div className={`${TrackListCSS.content__playlist} ${TrackListCSS.playlist} ${TrackListCSS[theme.name]}`}>
                             <div className={TrackListCSS.playlist__item}>
                                 <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
                                     <div className={TrackListCSS.track__title}>

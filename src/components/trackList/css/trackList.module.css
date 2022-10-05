@@ -1,3 +1,17 @@
+.light {
+  --background-color: #fff;
+  --color:#181818;
+  --image: #f6f4f4;
+  --logo: #b1b1b1;
+}
+.dark {
+  --background-color: #181818;
+  --color:#fff;
+  --image: #313131;
+  --logo: #4e4e4e;
+}
+
+
 .content__playlist {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7,11 +21,13 @@
       -ms-flex-direction: column;
           flex-direction: column;
   overflow-y: auto;
+  background-color: var(--background-color)
 }
 .playlist__item {
     width: 100%;
     display: block;
     margin-bottom: 12px;
+    background-color: var(--background-color)
   }
   
   .playlist__track {
@@ -28,6 +44,7 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+            background-color: var(--background-color)
   }
   
   .track__title {
@@ -42,13 +59,14 @@
         -ms-flex-align: center;
             align-items: center;
     width: 447px;
+    background-color: var(--background-color)
   }
   
   .track__title_image {
     width: 51px;
     height: 51px;
     padding: 16px;
-    background: #313131;
+    background: var(--image);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -65,7 +83,8 @@
     width: 18px;
     height: 17px;
     fill: transparent;
-    stroke: #4E4E4E;
+    stroke: var(--logo);
+
   }
   
   .track__title_link {
@@ -73,7 +92,8 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--color);
+    background-color: var(--background-color)
   }
   
   .track__title_span {
@@ -81,7 +101,8 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #4E4E4E;
+    color: var(--logo);
+    background-color: var(--background-color)
   }
   
   .track__author {
@@ -92,6 +113,7 @@
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
+            background-color: var(--background-color)
   }
   
   .track__author_link {
@@ -99,12 +121,14 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    color: #FFFFFF;
+    color: var(--color);
     text-align: left;
+    background-color: var(--background-color)
   }
   
   .track__album {
     width: 245px;
+    background-color: var(--background-color)
   }
   
   .track__album_link {
@@ -113,6 +137,7 @@
     font-size: 16px;
     line-height: 24px;
     color: #696969;
+    background-color: var(--background-color)
   }
   
   .track__time_svg {
@@ -121,6 +146,7 @@
     margin-right: 17px;
     fill: transparent;
     stroke: #696969;
+    background-color: var(--background-color)
   }
   
   .track__time_text {
@@ -130,4 +156,5 @@
     line-height: 24px;
     text-align: right;
     color: #696969;
+    background-color: var(--background-color)
   } 

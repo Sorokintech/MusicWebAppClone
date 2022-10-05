@@ -1,4 +1,15 @@
-
+.light {
+  --background-color: #fff;
+  --color:#181818;
+  --image: #f6f4f4;
+  --logo: #b1b1b1;
+}
+.dark {
+  --background-color: #181818;
+  --color:#fff;
+  --image: #313131;
+  --logo: #4e4e4e;
+}
 .content__title {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -14,6 +25,8 @@
         -ms-flex-pack: justify;
             justify-content: space-between;
     margin-bottom: 24px;
+    background-color: var(--background-color);
+    color: var(--color);
   }
   .playlist__title_col {
     font-style: normal;

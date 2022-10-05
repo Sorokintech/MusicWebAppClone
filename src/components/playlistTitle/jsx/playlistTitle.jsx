@@ -1,8 +1,10 @@
 import Id from '../img/sprite.svg'
 import PlaylistTitleCSS from '../css/playlistTitle.module.css'
+import { useThemeContext } from '../../theme/theme';
 export function PlaylistTitle () {
+    const {theme} = useThemeContext();
     return(
-        <div className={`${PlaylistTitleCSS.content__title}  ${PlaylistTitleCSS.playlist__title}`}>
+        <div className={`${PlaylistTitleCSS.content__title}  ${PlaylistTitleCSS.playlist__title} ${PlaylistTitleCSS[theme.name]}`}>
                             <div className={`${PlaylistTitleCSS.playlist__title_col} ${PlaylistTitleCSS.col01}`}>Трек</div>
                             <div className={`${PlaylistTitleCSS.playlist__title_col} ${PlaylistTitleCSS.col02}`}>ИСПОЛНИТЕЛЬ</div>
                             <div className={`${PlaylistTitleCSS.playlist__title_col} ${PlaylistTitleCSS.col03}`}>АЛЬБОМ</div>

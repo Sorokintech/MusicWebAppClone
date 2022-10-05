@@ -1,3 +1,15 @@
+.light {
+  --background-color: #fff;
+  --color:#181818;
+  --image: #f6f4f4;
+  --logo: #b1b1b1;
+}
+.dark {
+  --background-color: #181818;
+  --color:#fff;
+  --image: #313131;
+  --logo: #4e4e4e;
+}
 * {
   margin: 0;
   padding: 0;
@@ -33,7 +45,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: 'StratosSkyeng', sans-serif;
-  color: #FFFFFF;
+  color: var(--color);
 }
 
 .centerBlock__content {
@@ -44,6 +56,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+          background-color: var(--background-color);
 }
 .centerBlock__h2 {
   font-style: normal;
@@ -52,6 +65,7 @@ body {
   line-height: 72px;
   letter-spacing: -0.8px;
   margin-bottom: 45px;
+  background-color: var(--background-color);
 }
 .main__centerBlock {
   width: auto;
@@ -59,6 +73,7 @@ body {
       -ms-flex-positive: 3;
           flex-grow: 3;
   padding: 20px 40px 20px 111px;
+  background-color: var(--background-color);
 }
 .main {
   -webkit-box-flex: 1;
@@ -72,6 +87,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+          background-color: var(--background-color);
 }
 .main {
   -webkit-box-flex: 1;
@@ -85,12 +101,13 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+          background-color: var(--background-color);
 }
 .wrapper {
   width: 100%;
   min-height: 100%;
   overflow: hidden;
-  background-color: #383838;
+  background-color: var(--background-color);
 }
 
 .container {
@@ -98,5 +115,5 @@ body {
   height: 100vh;
   margin: 0 auto;
   position: relative;
-  background-color: #181818;
+  background-color: var(--background-color);
 }

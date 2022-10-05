@@ -1,6 +1,17 @@
+.light {
+  --background-color: #fff;
+  --color:#181818;
+}
+.dark {
+  --background-color: #181818;
+  --color:#fff;
+}
+
+
 .main__sidebar {
     max-width: 418px;
     padding: 20px 90px 20px 78px;
+    background-color: var(--background-color);
   }
   
 .sidebar__personal {
@@ -25,14 +36,14 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #FFFFFF;
+  color: var(--color);
   margin-right: 16px;
 }
 
 .sidebar__avatar {
   width: 43px;
   height: 43px;
-  background-color: #313131;
+  background-color: var(--color);
   border-radius: 50%;
 }
 
@@ -49,6 +60,7 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+          background-color: var(--background-color);
 }
 
 .sidebar__list {

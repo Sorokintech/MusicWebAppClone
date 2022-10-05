@@ -1,14 +1,17 @@
 import TrackNavCSS from '../css/trackNav.module.css'
 import { useState } from 'react';
+import { useThemeContext } from '../../theme/theme';
 
 const initialState = {author: false, year: false, genre: false}
 export function TrackNavBar () {
     const [visible, setVisible] = useState(initialState);
 
     const toggleVisibility = (key) => () => setVisible({...initialState, [key]: !visible[key]});
-   
+    const {theme} = useThemeContext();
     return (
-        <div className={`${TrackNavCSS.centerblock__filter} ${TrackNavCSS.filter}`}>
+        <div>
+        <h2 className={`${TrackNavCSS.centerBlock__h2} ${TrackNavCSS[theme.name]}`}>Треки</h2>
+        <div className={`${TrackNavCSS.centerblock__filter} ${TrackNavCSS.filter} ${TrackNavCSS[theme.name]}`}>
         <div className={TrackNavCSS.filter__title}>Искать по:</div>
         <div>
         <div className={`${TrackNavCSS.filter__button} ${TrackNavCSS.button__author} ${TrackNavCSS._btn__text} ${visible.author ? 'is-active': ''}`} onClick={toggleVisibility('author')}>исполнителю</div>
@@ -60,6 +63,7 @@ export function TrackNavBar () {
                 </ul>
             </div>
             )}
+        </div>
         </div>
         </div>
     )

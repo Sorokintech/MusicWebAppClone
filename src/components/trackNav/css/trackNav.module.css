@@ -1,3 +1,16 @@
+.light {
+  --background-color: #fff;
+  --color:#181818;
+  --image: #f6f4f4;
+  --logo: #b1b1b1;
+}
+.dark {
+  --background-color: #181818;
+  --color:#fff;
+  --image: #313131;
+  --logo: #4e4e4e;
+}
+
 .centerblock__filter {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -10,6 +23,8 @@
         -ms-flex-align: center;
             align-items: center;
     margin-bottom: 51px;
+    background-color: var(--background-color);
+    color: var(--color);
   }
   .filter__title {
     font-style: normal;
@@ -23,7 +38,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-    border: 1px solid #FFFFFF;
+    border: 1px solid var(--color);
     border-radius: 60px;
     padding: 6px 20px;
     margin-right: 10px;
@@ -43,7 +58,7 @@
   position: absolute;
   width: 248px;
   height: 305px;
-  background: #313131;
+  background: var(--image);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   }
@@ -56,18 +71,17 @@
   }
   
   .author__list_actual::-webkit-scrollbar-track {
-    background: #4B4949;        /* color of the tracking area */
+    background: var(--logo);        /* color of the tracking area */
   }
   
   .author__list_actual::-webkit-scrollbar-thumb {
-    background-color: #FFFFFF;    /* color of the scroll thumb */
+    background-color: var(--color);    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
-    border: 15px solid #FFFFFF;  /* creates padding around scroll thumb */
+    border: 15px solid var(--background-color);  /* creates padding around scroll thumb */
   }
   
   .author__list_item {
     width: 150px;
-  
     font-family: 'StratosSkyeng';
     font-style: normal;
     font-weight: 400;
@@ -75,11 +89,10 @@
     line-height: 24px;
     padding-bottom: 28px;
     font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #FFFFFF;
+    color: var(--color);
     flex: none;
     order: 1;
     flex-grow: 0;
-    
   }
   .author__list_item:hover {
   width: 150px;
@@ -89,12 +102,9 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
-  
   text-decoration-line: underline;
   font-feature-settings: 'pnum' on, 'lnum' on;
-  
   color: #B672FF;
-  
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -105,13 +115,12 @@
   align-items: flex-start;
   padding: 34px;
   gap: 14px;
-  
   position: absolute;
   width: 350px;
   height: 92px;
-  
   background: #313131;
   border-radius: 12px;
+  background-color: var(--image);
   }
   .filter__radio {
   display: flex;
@@ -144,4 +153,13 @@
   input[type='radio']:checked {
     accent-color: #FFFFFF;
   }
-  
+  .centerBlock__h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    letter-spacing: -0.8px;
+    margin-bottom: 45px;
+    background-color: var(--background-color);
+    color: var(--color);
+  }
