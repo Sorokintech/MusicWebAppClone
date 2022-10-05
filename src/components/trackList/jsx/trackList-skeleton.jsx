@@ -1,145 +1,145 @@
-import TrackListCSS from '../css/trackList.module.css'
-import TrackListSkeletonCSS from '../css/trackList-skeleton.module.css'
+import TrackListStyles from '../css/trackList.module.css'
+import TrackListSkeletonStyles from '../css/trackList-skeleton.module.css'
 export function TrackListSkeleton() {
     return(
-        <div className={`${TrackListCSS.content__playlist}  ${TrackListCSS.playlist}`}>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+        <div className={`${TrackListStyles.content__playlist}  ${TrackListStyles.playlist}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={TrackListCSS.playlist__item}>
-                                <div className={`${TrackListCSS.playlist__track} ${TrackListCSS.track}`}>
-                                    <div className={TrackListCSS.track__title}>
-                                        <div className={`${TrackListCSS.track__title_image} ${TrackListSkeletonCSS.skeleton__note_track}`}>
+                            <div className={TrackListStyles.playlist__item}>
+                                <div className={`${TrackListStyles.playlist__track} ${TrackListStyles.track}`}>
+                                    <div className={TrackListStyles.track__title}>
+                                        <div className={`${TrackListStyles.track__title_image} ${TrackListSkeletonStyles.skeleton__note_track}`}>
                                         </div>
-                                        <div className={`${TrackListCSS.track__title_text} ${TrackListSkeletonCSS.skeleton__title_track}`}>
+                                        <div className={`${TrackListStyles.track__title_text} ${TrackListSkeletonStyles.skeleton__title_track}`}>
                                         </div>
                                     </div>
-                                    <div className={`${TrackListCSS.track__author} ${TrackListSkeletonCSS.skeleton__name_track}`}>
+                                    <div className={`${TrackListStyles.track__author} ${TrackListSkeletonStyles.skeleton__name_track}`}>
                                     </div>
-                                    <div className={`${TrackListCSS.track__album} ${TrackListSkeletonCSS.skeleton__album_track}`}>
+                                    <div className={`${TrackListStyles.track__album} ${TrackListSkeletonStyles.skeleton__album_track}`}>
                                     </div>
                                 </div>
                             </div>

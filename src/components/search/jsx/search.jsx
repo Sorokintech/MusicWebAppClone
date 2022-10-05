@@ -1,4 +1,4 @@
-import SearchCSS from '../css/search.module.css'
+import SearchStyles from '../css/search.module.css'
 import { useThemeContext } from '../../theme/theme';
 import { SearchIcon } from '../../icons.jsx'
 
@@ -6,11 +6,11 @@ export function SearchBar() {
     const {theme} = useThemeContext();
 
     return (
-    <div className={`${SearchCSS.centerblock__search} ${SearchCSS.search} ${SearchCSS[theme.name]}`}>
-    <svg className={SearchCSS.search__svg}>
-            <SearchIcon className={SearchCSS[theme.color]} />
+    <div className={`${SearchStyles.centerblock__search} ${SearchStyles.search} ${SearchStyles[theme.name]}`}>
+    <svg className={SearchStyles.search__svg}>
+            <SearchIcon className={SearchStyles[theme.color]} />
     </svg>
-    <input className={SearchCSS.search__text} type="search" placeholder="Поиск" name="search" />
+    <input className={SearchStyles.search__text} type="search" placeholder="Поиск" name="search" />
 </div>
     )
 }

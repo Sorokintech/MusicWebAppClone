@@ -80,8 +80,8 @@
   }
   
   .track__title_svg {
-    width: 18px;
-    height: 17px;
+    width: 20px;
+    height: 19px;
     fill: transparent;
     stroke: var(--logo);
 
@@ -141,8 +141,8 @@
   }
   
   .track__time_svg {
-    width: 14px;
-    height: 12px;
+    width: 16px;
+    height: 14px;
     margin-right: 17px;
     fill: transparent;
     stroke: #696969;
