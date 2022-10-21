@@ -1,9 +1,9 @@
-.sidebar__img_skeleton {
+.imgSkeleton {
     width: 250px;
     height: 150px;
     background-color: #313131;
 }
-.sidebar__avatar_skeleton {
+.avatarSkeleton {
     width: 43px;
     height: 43px;
     background-color:  #181818;

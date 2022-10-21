@@ -1,18 +1,18 @@
-.center__main {
+.main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #181818;
 }
-.login__menu{
+.menu{
     display: flex;
     flex-direction: column;
     background-color: #fff;
     gap: 50px;
     border-radius: 20px;
 }
-.center__image {
+.image {
     padding-top: 60px;
     padding-left: 100px;
     padding-right: 100px;
@@ -20,7 +20,7 @@
 .center {
     font-size: 70px;
 }
-.login__inputs {
+.inputs {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +48,7 @@
     border-right-style: none;
     outline: none;
 }
-.password__repeat {
+.repeat {
     width: 278px;
     font-size: 20px;
     padding-top: 15px;
@@ -59,7 +59,7 @@
     border-right-style: none;
     outline: none;
 }
-.login__buttons {
+.button {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,7 +67,7 @@
     padding-bottom: 60px;
 }
 
-.button__register {
+.register {
     width: 278px;
     padding: 20px 40px;
     border: solid transparent;

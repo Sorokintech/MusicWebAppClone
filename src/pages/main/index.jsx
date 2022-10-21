@@ -1,14 +1,15 @@
-import MainStyle from './main.module.css';
-import { PlaylistTitle } from '../../components/playlistTitle/jsx/playlistTitle';
-import { SearchBar } from '../../components/search/jsx/search';
-import { TrackList } from '../../components/trackList/jsx/trackList';
-import { TrackNavBar } from '../../components/trackNav/jsx/trackNav.jsx';
-import { NavBar } from '../../components/navbar/jsx/navbar';
-import { SideBar } from '../../components/sideBar/jsx/sideBar';
-import { BottomPlayer } from '../../components/bottomPlayer/jsx/bottomPlayer';
+import styles from './main.module.css';
+import { PlaylistTitle } from '../../components/playlistTitle/playlistTitle.jsx';
+import { SearchBar } from '../../components/search/search.jsx';
+import { TrackList } from '../../components/trackList/trackList';
+import { TrackNavBar } from '../../components/trackNav/trackNav.jsx';
+import { NavBar } from '../../components/navbar/navbar.jsx';
+import { SideBar } from '../../components/sideBar/sideBar';
+import { BottomPlayer } from '../../components/bottomPlayer/bottomPlayer.jsx';
 import { Footer } from '../../components/footer/footer';
 import { useEffect, useState } from 'react';
 import { useThemeContext } from '../../components/theme/theme';
+import cn from 'classnames';
 
 
 
@@ -22,11 +23,24 @@ export const Main = () => {
 
             const {theme} = useThemeContext();
 
+            const container = cn(
+                styles.container,
+                styles[theme.name]
+            );
+            const main = cn(
+                styles.main,
+                styles[theme.name]
+            );
+            const center = cn(
+                styles.centerBlock,
+                styles[theme.name]
+            );
+
     return (
-        <div className={`${MainStyle.container} ${MainStyle[theme.name]}`}>
-            <div className={`${MainStyle.main} ${MainStyle[theme.name]}`}>
+        <div className={container}>
+            <div className={main}>
                 <NavBar />
-                    <div className={`${MainStyle.main__centerBlock} ${MainStyle.centerBlock} ${MainStyle[theme.name]}`}>
+                    <div className={center}>
                         <SearchBar />
                         <TrackNavBar />
                         <PlaylistTitle/>
@@ -37,25 +51,4 @@ export const Main = () => {
                         <Footer />
                     </div>
         </div>
-    // export const Main =  () => {
-//     return (
-
-//         <div className={`${MainStyle.main__centerBlock} ${MainStyle.centerBlock}`}>
-//             <SearchBar />
-//               <TrackNavBar />
-//               <PlaylistTitle/>
-//               <TrackList skeleton = {pending} />
-//         </div>
-//     )
-// }
-    )
-}
-
-
-
-
-
-
-
-
-
+)};

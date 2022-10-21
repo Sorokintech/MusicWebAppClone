@@ -1,10 +1,16 @@
-.skeleton__title {
+.skeletonTitle {
     width: 59px;
     height: 15px;
     background-color: #313131;
 }
-.skeleton__note {
+.skeletonNote {
     width: 51px;
     height: 51px;
     background-color: #313131;
 }
+.trackPlaySvg {
+    width: 18px;
+    height: 22px;
+    fill: #fff;
+    stroke: #4E4E4E;
+  }

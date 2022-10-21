@@ -1,12 +1,12 @@
-import logoDark from '../img/logo__dark.png';
-import logoLight from '../img/logo__light.png';
-import DarkTheme from '../img/dark.png';
-import LightTheme from '../img/light.png';
+import logoDark from './img/logo__dark.png';
+import logoLight from './img/logo__light.png';
+import DarkTheme from './img/dark.png';
+import LightTheme from './img/light.png';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { useThemeContext } from '../../theme/theme';
-import styles from '../css/navbar.module.css';
-import classNames from 'classnames';
+import { useThemeContext } from '../theme/theme';
+import styles from './navbar.module.css';
+import cn from 'classnames';
 
 export function NavBar() {
     const [visible, setVisible] = useState(false);
@@ -15,43 +15,43 @@ export function NavBar() {
     
     const {theme, toggleTheme} = useThemeContext();
     
-    const mainDiv = classNames(
-        styles.main__nav,
+    const mainDiv = cn(
+        styles.nav,
         styles[theme.name]
     );
-    const mainLogo = classNames(
-        styles.nav__logo,
+    const mainLogo = cn(
+        styles.logo,
         styles[theme.name]
     );
-    const mainImage = classNames(
-        styles.logo__image,
+    const mainImage = cn(
+        styles.image,
         styles[theme.name]
     );
-    const mainBurger = classNames(
-        styles.nav__burger,
+    const mainBurger = cn(
+        styles.burger,
         styles[theme.name]
     );
-    const burgerLine = classNames(
-        styles.burger__line,
+    const burgerLine = cn(
+        styles.line,
         styles[theme.name]
     );
-    const navMenu = classNames(
-        styles.nav__menu,
+    const navMenu = cn(
+        styles.menu,
         styles[theme.name]
     );
-    const menuList = classNames(
-        styles.menu__list,
+    const menuList = cn(
+        styles.list,
         styles[theme.name]
     );
-    const menuItem = classNames(
-        styles.menu__item,
+    const menuItem = cn(
+        styles.item,
         styles[theme.name]
     );
-    const menuLink = classNames(
-        styles.menu__link,
+    const menuLink = cn(
+        styles.link,
         styles[theme.name]
     );
-    const mainTheme = classNames(
+    const mainTheme = cn(
         styles.theme,
     );
 
@@ -70,7 +70,7 @@ export function NavBar() {
                     <div className={navMenu}>
                         <ul className={menuList}>
                             <li className={menuItem}><NavLink to={`/`} className={menuLink}>Главное</NavLink></li>
-                            <li className={styles.menu__item}><NavLink to={`/mycollection`} className={menuLink}>Мой плейлист</NavLink></li>
+                            <li className={menuItem}><NavLink to={`/mycollection`} className={menuLink}>Мой плейлист</NavLink></li>
                             <li className={menuItem}><NavLink to={`/login`} className={menuLink}>Войти</NavLink></li>
                             <li className={menuItem} ><img src={theme.name === 'dark' ? DarkTheme : LightTheme} alt="theme" className={mainTheme} onClick={toggleTheme}/></li>
                         </ul>

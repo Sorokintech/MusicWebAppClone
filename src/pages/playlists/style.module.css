@@ -6,14 +6,14 @@
     font-size: 70px;
 }
 
-.center__playlist {
+.playlists {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 70px;
     padding-top: 20px;
 }
-.playlist__item {
+.item {
     display: flex;
     justify-content: center;
     font-size: 40px;
@@ -21,6 +21,6 @@
     color: #fff;
     gap: 40px;
 }
-.playlist__item:hover {
+.item:hover {
     color:rgb(90, 60, 138);
 }

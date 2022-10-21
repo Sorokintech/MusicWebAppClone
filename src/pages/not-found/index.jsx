@@ -1,7 +1,12 @@
-import Style from './style.module.css'
+import styles from './style.module.css'
+import cn from 'classnames'
 
 export function NotFound () {
+
+    const center = cn(
+        styles.center
+    )
     return (
-        <h1 className={Style.center}> Page was not found :C</h1>
+        <h1 className={center}> Page was not found :C</h1>
     )
 };

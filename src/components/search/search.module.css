@@ -6,7 +6,7 @@
   --background-color: #181818;
   --color:#ffffff;
 }
-.centerblock__search {
+.search {
     width: 100%;
     border-bottom: 1px solid var(--color);
     margin-bottom: 51px;
@@ -23,7 +23,7 @@
             color: var(--color);
   }
   
-.search__svg {
+.searchSvg {
     width: 17px;
     height: 17px;
     margin-right: 5px;
@@ -32,7 +32,7 @@
     
   }
   
-  .search__text {
+  .searchText {
     -webkit-box-flex: 100;
         -ms-flex-positive: 100;
             flex-grow: 100;
@@ -46,7 +46,7 @@
     color: var(--color);
   }
   
-  .search__text::-webkit-input-placeholder {
+  .searchText::-webkit-input-placeholder {
     background-color: var(--background-color);
     color: var(--color);
     font-style: normal;
@@ -55,7 +55,7 @@
     line-height: 24px;
   }
   
-  .search__text:-ms-input-placeholder {
+  .searchText:-ms-input-placeholder {
     background-color: var(--background-color);
     color: var(--color);
     font-style: normal;
@@ -64,7 +64,7 @@
     line-height: 24px;
   }
   
-  .search__text::-ms-input-placeholder {
+  .searchText::-ms-input-placeholder {
     background-color: var(--background-color);
     color: var(--color);
     font-style: normal;
@@ -73,7 +73,7 @@
     line-height: 24px;
   }
   
-  .search__text::placeholder {
+  .searchText::placeholder {
     background-color: var(--background-color);
     color:var(--color);
     font-style: normal;
