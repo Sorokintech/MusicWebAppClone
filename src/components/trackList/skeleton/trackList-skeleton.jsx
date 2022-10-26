@@ -4,175 +4,145 @@ import cn from 'classnames'
 
 export function TrackListSkeleton() {
 
-    const content = cn(
-        styles.content,
-    );
-    const item = cn(
-        styles.item
-    );
-    const track = cn(
-        styles.track
-    );
-    const title = cn(
-        styles.title
-    );
-
-    const skeletonNote= cn(
-        skeletonStyles.skeletonNote,
-        styles.titleImage
-    );
-    const skeletonTitle= cn(
-        skeletonStyles.skeletonTitle,
-        styles.titleText
-    );
-    const skeletonName= cn(
-        skeletonStyles.skeletonName,
-        styles.author
-    );
-    const skeletonAlbum= cn(
-        skeletonStyles.skeletonAlbum,
-        styles.album
-    );
-
     return(
-        <div className={content}>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+        <div className={cn(styles.content)}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>
-                            <div className={item}>
-                                <div className={track}>
-                                    <div className={title}>
-                                        <div className={skeletonNote}>
+                            <div className={cn(styles.item)}>
+                                <div className={cn(styles.track)}>
+                                    <div className={cn(styles.title)}>
+                                        <div className={cn(skeletonStyles.skeletonNote,styles.titleImage)}>
                                         </div>
-                                        <div className={skeletonTitle}>
+                                        <div className={cn(skeletonStyles.skeletonTitle,styles.titleText)}>
                                         </div>
                                     </div>
-                                    <div className={skeletonName}>
+                                    <div className={cn(skeletonStyles.skeletonName,styles.author)}>
                                     </div>
-                                    <div className={skeletonAlbum}>
+                                    <div className={cn(skeletonStyles.skeletonAlbum,styles.album)}>
                                     </div>
                                 </div>
                             </div>

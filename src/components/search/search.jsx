@@ -6,27 +6,12 @@ import cn from 'classnames'
 export function SearchBar() {
     const {theme} = useThemeContext();
 
-    const center = cn(
-        styles.search,
-        styles[theme.name]
-    );
-    const searchSvg = cn(
-        styles.searchSvg
-    );
-    const themeColor = cn(
-        styles[theme.color]
-    );
-    const searchText = cn(
-        styles.searchText
-    )
-
-
     return (
-    <div className={center}>
-    <svg className={searchSvg}>
-            <SearchIcon className={themeColor} />
+    <div className={cn(styles.search,styles[theme.name])}>
+    <svg className={cn(styles.searchSvg)}>
+            <SearchIcon className={cn(styles[theme.color])} />
     </svg>
-    <input className={searchText} type="search" placeholder="Поиск" name="search" />
+    <input className={cn(styles.searchText)} type="search" placeholder="Поиск" name="search" />
 </div>
     )
 }

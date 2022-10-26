@@ -15,64 +15,23 @@ export function NavBar() {
     
     const {theme, toggleTheme} = useThemeContext();
     
-    const mainDiv = cn(
-        styles.nav,
-        styles[theme.name]
-    );
-    const mainLogo = cn(
-        styles.logo,
-        styles[theme.name]
-    );
-    const mainImage = cn(
-        styles.image,
-        styles[theme.name]
-    );
-    const mainBurger = cn(
-        styles.burger,
-        styles[theme.name]
-    );
-    const burgerLine = cn(
-        styles.line,
-        styles[theme.name]
-    );
-    const navMenu = cn(
-        styles.menu,
-        styles[theme.name]
-    );
-    const menuList = cn(
-        styles.list,
-        styles[theme.name]
-    );
-    const menuItem = cn(
-        styles.item,
-        styles[theme.name]
-    );
-    const menuLink = cn(
-        styles.link,
-        styles[theme.name]
-    );
-    const mainTheme = cn(
-        styles.theme,
-    );
-
-
     return (
-        <nav className={mainDiv}>
-                    <div className={mainLogo}>
-                        <img className={mainImage} src={theme.name === 'dark' ? logoDark : logoLight} alt="logo" />
+        <nav className={cn(styles.nav,styles[theme.name])}>
+                    <div className={cn(styles.logo,styles[theme.name])}>
+                        <img className={cn(styles.image,styles[theme.name])} src={theme.name === 'dark' ? logoDark : logoLight} alt="logo" />
                     </div>
-                    <div className={mainBurger} onClick={toggleVisibility}>
-                        <span className={burgerLine}></span>
-                        <span className={burgerLine}></span>
-                        <span className={burgerLine}></span>
+                    <div className={cn(styles.burger,styles[theme.name])} onClick={toggleVisibility}>
+                        <span className={cn(styles.line,styles[theme.name])}></span>
+                        <span className={cn(styles.line,styles[theme.name])}></span>
+                        <span className={cn(styles.line,styles[theme.name])}></span>
                     </div>
                     {visible && (
-                    <div className={navMenu}>
-                        <ul className={menuList}>
-                            <li className={menuItem}><NavLink to={`/`} className={menuLink}>Главное</NavLink></li>
-                            <li className={menuItem}><NavLink to={`/mycollection`} className={menuLink}>Мой плейлист</NavLink></li>
-                            <li className={menuItem}><NavLink to={`/login`} className={menuLink}>Войти</NavLink></li>
-                            <li className={menuItem} ><img src={theme.name === 'dark' ? DarkTheme : LightTheme} alt="theme" className={mainTheme} onClick={toggleTheme}/></li>
+                    <div className={cn(styles.menu,styles[theme.name])}>
+                        <ul className={cn(styles.list,styles[theme.name])}>
+                            <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/`} className={cn(styles.link,styles[theme.name])}>Главное</NavLink></li>
+                            <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/mycollection`} className={cn(styles.link,styles[theme.name])}>Мой плейлист</NavLink></li>
+                            <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/login`} className={cn(styles.link,styles[theme.name])}>Войти</NavLink></li>
+                            <li className={cn(styles.item,styles[theme.name])} ><img src={theme.name === 'dark' ? DarkTheme : LightTheme} alt="theme" className={cn(styles.theme,)} onClick={toggleTheme}/></li>
                         </ul>
                     </div>
                     )}

@@ -11,109 +11,58 @@ export function TrackNavBar () {
     const toggleVisibility = (key) => () => setVisible({...initialState, [key]: !visible[key]});
     const {theme} = useThemeContext();
 
-    const header = cn(
-        styles.h2,
-        styles[theme.name]
-    );
-    const center = cn(
-        styles.center,
-        styles[theme.name]
-    );
-    const title = cn(
-        styles.title
-    );
-    const buttonAuthor = cn(
-        styles.button,
-        styles.btnText,
-        visible.author ? 'is-active': ''
-    );
-    const list = cn(
-        styles.list
-    );
-    const listActual = cn(
-        styles.listActual
-    );
-    const listItem = cn(
-        styles.listItem,
-        styles.btnText
-    );
-    const buttonYear = cn(
-        styles.button,
-        styles.btnText,
-        visible.year ? 'is-active': ''
-    );
-    const yearFilter = cn(
-        styles.year,
-        styles.radio
-    );
-    const radio = cn(
-        styles.radio
-    );
-    const radioFirst = cn(
-        styles.firstRadio
-    );
-    const radioItem = cn(
-        styles.btnText
-    );
-    const buttonGenre = cn(
-        styles.button,
-        styles.btnText,
-        visible.genre ? 'is-active': ''
-    );
-
-
     return (
         <div>
-        <h2 className={header}>Треки</h2>
-        <div className={center}>
-        <div className={title}>Искать по:</div>
+        <h2 className={cn(styles.h2,styles[theme.name])}>Треки</h2>
+        <div className={cn(styles.center,styles[theme.name])}>
+        <div className={cn(styles.title)}>Искать по:</div>
         <div>
-        <div className={buttonAuthor} onClick={toggleVisibility('author')}>исполнителю</div>
+        <div className={cn(styles.button,styles.btnText,{[styles.isActive]:visible.author})} onClick={toggleVisibility('author')}>исполнителю</div>
         {visible.author && (
-            <div className ={list}>
-                <ul className={listActual}>
-                    <li className ={listItem}>Michael Jackson</li>
-                    <li className ={listItem}>Calvin Harris</li>
-                    <li className ={listItem}>Frank Sinatra</li>
-                    <li className ={listItem}>Zhu</li>
-                    <li className ={listItem}>Arctic Monkeys</li>
-                    <li className ={listItem}>Michael Jackson</li>
-                    <li className ={listItem}>Frank Sinatra</li>
-                    <li className ={listItem}>Calvin Harris</li>
-                    <li className ={listItem}>Zhu</li>
-                    <li className ={listItem}>Arctic Monkeys</li>
-                    <li className ={listItem}>Michael Jackson</li>
-                    <li className ={listItem}>Frank Sinatra</li>
-                    <li className ={listItem}>Calvin Harris</li>
-                    <li className ={listItem}>Zhu</li>
-                    <li className ={listItem}>Arctic Monkeys</li>
+            <div className ={cn(styles.list)}>
+                <ul className={cn(styles.listActual)}>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Michael Jackson</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Calvin Harris</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Frank Sinatra</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Zhu</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Arctic Monkeys</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Michael Jackson</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Frank Sinatra</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Calvin Harris</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Zhu</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Arctic Monkeys</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Michael Jackson</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Frank Sinatra</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Calvin Harris</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Zhu</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Arctic Monkeys</li>
                 </ul>
             </div>
             )}
             </div>
             <div>
-        <div className={buttonYear} onClick={toggleVisibility('year')}>году выпуска</div>
+        <div className={cn(styles.button,styles.btnText,{[styles.isActive]:visible.year})} onClick={toggleVisibility('year')}>году выпуска</div>
         {visible.year && (
-            <div className ={yearFilter}>
-                <div className={radio}>
-                <input className ={radioItem} name="radio-btn"type="radio" id="new" value="Более новые"/>
-                <label className={radioFirst} htmlFor="new">Более старые</label>
-                <input className ={radioItem} name="radio-btn" type="radio" id="old" value="Более старые"/>
+            <div className ={cn(styles.year,styles.radio)}>
+                <div className={cn(styles.radio)}>
+                <input className ={cn(styles.btnText)} name="radio-btn"type="radio" id="new" value="Более новые"/>
+                <label className={cn(styles.firstRadio)} htmlFor="new">Более старые</label>
+                <input className ={cn(styles.btnText)} name="radio-btn" type="radio" id="old" value="Более старые"/>
                 <label htmlFor="old">Более старые</label>
                 </div>
             </div>
             )}
         </div>
         <div>
-        <div className={buttonGenre} onClick={toggleVisibility('genre')}>жанру</div>
+        <div className={cn(styles.button,styles.btnText,{[styles.isActive]:visible.genre})} onClick={toggleVisibility('genre')}>жанру</div>
         {visible.genre && (
-            <div className ={list}>
-                <ul className={listActual}>
-                    <li className ={listItem}>Рок</li>
-                    <li className ={listItem}>Хип-Хоп</li>
-                    <li className ={listItem}>Поп-музыка</li>
-                    <li className ={listItem}>Техно</li>
-                    <li className ={listItem}>Инди</li>
+            <div className ={cn(styles.list)}>
+                <ul className={cn(styles.listActual)}>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Рок</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Хип-Хоп</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Поп-музыка</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Техно</li>
+                    <li className ={cn(styles.listItem,styles.btnText)}>Инди</li>
                 </ul>
             </div>
             )}

@@ -23,31 +23,18 @@ export const Main = () => {
 
             const {theme} = useThemeContext();
 
-            const container = cn(
-                styles.container,
-                styles[theme.name]
-            );
-            const main = cn(
-                styles.main,
-                styles[theme.name]
-            );
-            const center = cn(
-                styles.centerBlock,
-                styles[theme.name]
-            );
-
     return (
-        <div className={container}>
-            <div className={main}>
+        <div className={cn(styles.container,styles[theme.name])}>
+            <div className={cn(styles.main,styles[theme.name])}>
                 <NavBar />
-                    <div className={center}>
+                    <div className={cn(styles.centerBlock,styles[theme.name])}>
                         <SearchBar />
                         <TrackNavBar />
                         <PlaylistTitle/>
-                        <TrackList skeleton = {pending} />
+                        <TrackList loading = {pending} />
                     </div>
-                        <SideBar skeleton = {pending}/>
-                        <BottomPlayer skeleton = {pending}/>
+                        <SideBar loading = {pending}/>
+                        <BottomPlayer loading = {pending}/>
                         <Footer />
                     </div>
         </div>

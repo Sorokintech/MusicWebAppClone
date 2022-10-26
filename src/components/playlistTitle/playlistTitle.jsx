@@ -6,38 +6,14 @@ import cn from'classnames'
 export function PlaylistTitle () {
     const {theme} = useThemeContext();
 
-    const content = cn(
-        styles.content,
-        styles.playlist,
-        styles[theme.name]
-    );
-    const titleSvg = cn(
-        styles.titleSvg
-    );
-    const track = cn(
-        styles.col01,
-    );
-    const author = cn(
-        styles.col02
-    );
-    const album = cn(
-        styles.col03
-    );
-    const column = cn(
-        styles.col04
-    )
-    const themeColor = cn(
-        styles[theme.color]
-    )
-
     return(
-        <div className={content}>
-                            <div className={track}>Трек</div>
-                            <div className={author}>ИСПОЛНИТЕЛЬ</div>
-                            <div className={album}>АЛЬБОМ</div>
-                            <div className={column}>
-                                <svg className={titleSvg} alt="time">
-                                <WatchIcon className={themeColor}/>
+        <div className={cn(styles.content,styles.playlist,styles[theme.name])}>
+                            <div className={cn(styles.col01)}>Трек</div>
+                            <div className={cn(styles.col02)}>ИСПОЛНИТЕЛЬ</div>
+                            <div className={cn(styles.col03)}>АЛЬБОМ</div>
+                            <div className={cn(styles.col04)}>
+                                <svg className={cn(styles.titleSvg)} alt="time">
+                                <WatchIcon className={cn(styles[theme.color])}/>
                                 </svg>
                             </div>
                         </div>

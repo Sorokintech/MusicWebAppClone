@@ -3,10 +3,7 @@ import cn from 'classnames'
 
 export function Tracks () {
 
-    const center = cn(
-        styles.center
-    )
     return (
-        <h1 className={center}>Страница треков</h1>
+        <h1 className={cn(styles.center)}>Страница треков</h1>
     )
 };

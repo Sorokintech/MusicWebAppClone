@@ -6,7 +6,7 @@ import { useThemeContext } from '../theme/theme';
 import mainSong from '../../music.mp3';
 import cn from 'classnames';
 
-export function BottomPlayer({skeleton}) {
+export function BottomPlayer({loading}) {
     const [playing, setPlaying] = useState(false);
     const audioRef = useRef(null);
     const inputRef = useRef(null)
@@ -31,188 +31,84 @@ export function BottomPlayer({skeleton}) {
     }
     const {theme} = useThemeContext();
 
-    const content = cn(
-        styles.content,
-        styles.bar,
-        styles[theme.name]
-    );
-    const fake = cn(
-        styles.fake
-    );
-    const bar = cn(
-        styles.bar,
-    );
-    const playerProgress = cn(
-        styles.playerProgress
-    );
-    const progressLine = cn(
-        styles.barProgressLine
-    );
-    const playerBlock = cn(
-        styles.playerBlock
-    );
-    const player = cn(
-        styles.player
-    );
-    const controls = cn(
-        styles.controls
-    );
-    const btnPrev = cn(
-        styles.btnPrev
-    );
-    const themeColor = cn(
-        styles[theme.color]
-    );
-    const btnPlay = cn(
-        styles.btnPlay
-    );
-    const trackPlaySvg = cn(
-        styles.trackPlaySvg
-    );
-    const btnNext = cn(
-        styles.btnNext
-    );
-    const btnRepeat = cn(
-        styles.btnRepeat,
-        styles.btnIcon
-    );
-    const btnShuffle = cn(
-        styles.btnShuffle,
-        styles.btnIcon
-    );
-    const trackPlay = cn(
-        styles.trackPlay
-    );
-    const playContain = cn(
-        styles.playContain
-    );
-    const trackPlayImage = cn(
-        styles.trackPlayImage
-    );
-    const playAuthor = cn(
-        styles.trackPlayAuthor
-    );
-    const noteSvg = cn(
-        styles.trackNoteSvg
-    );
-    const authorLink = cn(
-        styles.trackPlayAuthorLink
-    );
-    const playAlbum = cn(
-        styles.trackPlayAlbum
-    );
-    const albumLink = cn(
-        styles.trackPlayAlbumLink
-    );
-    const playLikeDis = cn(
-        styles.trackPlayLikeDis
-    );
-    const playLike = cn(
-        styles.trackPlayLike,
-        styles.btnIcon
-    );
-    const playDislike = cn(
-        styles.trackPlayDislike,
-        styles.btnIcon
-    );
-    const volumeBlock = cn (
-        styles.volumeBlock
-    );
-    const volumeContent = cn(
-        styles.volumeContent
-    );
-    const volumeImage = cn(
-        styles.volumeImage
-    );
-    const volumeSvg = cn(
-        styles.trackVolumeSvg
-    );
-    const volumeProgress = cn(
-        styles.volumeProgress
-    );
-    const volumeProgressLine = cn(
-        styles.volumeProgressLine
-    )
-
-
-    if (skeleton) {return <BottomPlayerSkeleton/>}
+    if (loading) {return <BottomPlayerSkeleton/>}
     return (
         <div>
-             <audio controls ref={audioRef} className={fake}>
+             <audio controls ref={audioRef} className={cn(styles.fake)}>
                 <source src={mainSong} type="audio/mpeg" />
             </audio>
-        <div className={bar}>
-            <div className={content}>
-                    <div className={playerProgress}>
-                    <input ref={inputRef} className={progressLine} type="range" name="range" max={inputRef.current?.max} value={inputRef.current?.value ?? 0}/>
+        <div className={cn(styles.bar)}>
+            <div className={cn(styles.content,styles.bar,styles[theme.name])}>
+                    <div className={cn(styles.playerProgress)}>
+                    <input ref={inputRef} className={cn(styles.barProgressLine)} type="range" name="range" max={inputRef.current?.max} value={inputRef.current?.value ?? 0}/>
                     </div>
-                        <div className={playerBlock}>
-                            <div className={player}>
-                                <div className={controls}>
-                                    <div className={btnPrev}>
-                                        <svg className={trackPlaySvg}>
-                                            <PrevIcon className={themeColor}/>
+                        <div className={cn(styles.playerBlock)}>
+                            <div className={cn(styles.player)}>
+                                <div className={cn(styles.controls)}>
+                                    <div className={cn(styles.btnPrev)}>
+                                        <svg className={cn(styles.trackPlaySvg)}>
+                                            <PrevIcon className={cn(styles[theme.color])}/>
                                         </svg>
                                     </div>
-                                <div className={btnPlay} onClick={togglePlay}>
-                                <svg className={trackPlaySvg}>
-                                    {playing?<PauseIcon className={themeColor}/>:<PlayIcon/>}
+                                <div className={cn(styles.btnPlay)} onClick={togglePlay}>
+                                <svg className={cn(styles.trackPlaySvg)}>
+                                    {playing?<PauseIcon className={cn(styles[theme.color])}/>:<PlayIcon/>}
                                 </svg>
                                 </div>
-                                <div className={btnNext}>
-                                    <svg className={trackPlaySvg}>
-                                        <NextIcon className={themeColor}/>
+                                <div className={cn(styles.btnNext)}>
+                                    <svg className={cn(styles.trackPlaySvg)}>
+                                        <NextIcon className={cn(styles[theme.color])}/>
                                     </svg>  
                                 </div>
-                                <div className={btnRepeat}>
-                                    <svg className={trackPlaySvg}>
-                                        <RepeatIcon className={themeColor}/>
+                                <div className={cn(styles.btnRepeat,styles.btnIcon)}>
+                                    <svg className={cn(styles.trackPlaySvg)}>
+                                        <RepeatIcon className={cn(styles[theme.color])}/>
                                     </svg>
                                 </div>
-                                <div className={btnShuffle} >
-                                    <svg className={trackPlaySvg}>
-                                        <ShuffleIcon className={themeColor}/>
+                                <div className={cn(styles.btnShuffle,styles.btnIcon)} >
+                                    <svg className={cn(styles.trackPlaySvg)}>
+                                        <ShuffleIcon className={cn(styles[theme.color])}/>
                                     </svg>                              
                                 </div>
                             </div>
-                            <div className={trackPlay}>
-                                <div className={playContain}>
-                                    <div className={trackPlayImage}>
-                                        <svg className={noteSvg} alt="music">
-                                        <NoteIcon className={themeColor}/>
+                            <div className={cn(styles.trackPlay)}>
+                                <div className={cn(styles.playContain)}>
+                                    <div className={cn(styles.trackPlayImage)}>
+                                        <svg className={cn(styles.trackNoteSvg)} alt="music">
+                                        <NoteIcon className={cn(styles[theme.color])}/>
                                         </svg>
                                     </div>
-                                    <div className={playAuthor}>
-                                        <a className={authorLink} href="http://">Ты та...</a>
+                                    <div className={cn(styles.trackPlayAuthor)}>
+                                        <a className={cn(styles.trackPlayAuthorLink)} href="http://">Ты та...</a>
                                     </div>
-                                    <div className={playAlbum}>
-                                        <a className={albumLink} href="http://">Баста</a>
+                                    <div className={cn(styles.trackPlayAlbum)}>
+                                        <a className={cn(styles.trackPlayAlbumLink)} href="http://">Баста</a>
                                     </div>
                                 </div>
 
-                                <div className={playLikeDis}>
-                                    <div className={playLike}>
-                                        <svg className={trackPlaySvg}>
-                                            <LikeIcon className={themeColor}/>
+                                <div className={cn(styles.trackPlayLikeDis)}>
+                                    <div className={cn(styles.trackPlayLike,styles.btnIcon)}>
+                                        <svg className={cn(styles.trackPlaySvg)}>
+                                            <LikeIcon className={cn(styles[theme.color])}/>
                                         </svg>
                                     </div>
-                                    <div className={playDislike}>
-                                        <svg className={trackPlaySvg}>
-                                            <DislikeIcon className={themeColor}/>
+                                    <div className={cn(styles.trackPlayDislike,styles.btnIcon)}>
+                                        <svg className={cn(styles.trackPlaySvg)}>
+                                            <DislikeIcon className={cn(styles[theme.color])}/>
                                         </svg>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className={volumeBlock}>
-                           <div className={volumeContent}>
-                                <div className={volumeImage}>
-                                    <svg className={volumeSvg}>
-                                        <VolumeIcon className={themeColor}/>
+                        <div className={cn(styles.volumeBlock)}>
+                           <div className={cn(styles.volumeContent)}>
+                                <div className={cn(styles.volumeImage)}>
+                                    <svg className={cn(styles.trackVolumeSvg)}>
+                                        <VolumeIcon className={cn(styles[theme.color])}/>
                                     </svg>
                                 </div>
-                                <div className={volumeProgress}>
-                                    <input className={volumeProgressLine} type="range" name="range" />
+                                <div className={cn(styles.volumeProgress)}>
+                                    <input className={cn(styles.volumeProgressLine)} type="range" name="range" />
                                 </div>
                            </div>
                         </div>

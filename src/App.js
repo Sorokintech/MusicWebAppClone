@@ -8,16 +8,6 @@ import { useState} from 'react';
 
 function App() {
   const [theme, setTheme] = useState(themes.dark);
-  // let classNames = require('classnames');
-  //   let wrapperClass = classNames({
-  //       wrapper: true,
-  //       container: true,
-  //       [theme.name]: true
-  //   });
-  //   let containerClass = classNames({
-  //     container: true,
-  //     [theme.name]: true
-  // });
 
   return (
     <ThemeContext.Provider value = {{
@@ -31,8 +21,6 @@ function App() {
     }}>
           <div className= {`${Styles.wrapper} ${Styles[theme.name]}`}>
       <div className={`${Styles.container} ${Styles[theme.name]}`}>
-    {/* <div className= {(wrapperClass.wrapper, wrapperClass[theme.name])}>
-      <div className={(wrapperClass.container, wrapperClass[theme.name])}> */}
         <AppRoutes />
       </div>
     </div>

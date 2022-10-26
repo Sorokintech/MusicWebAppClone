@@ -147,8 +147,6 @@
   input[type='radio'] {
     width: 20px;
     height: 20px;
-    /* accent-color: #313131;
-    background-color: #313131; */
   }
   input[type='radio']:checked {
     accent-color: #FFFFFF;

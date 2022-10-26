@@ -6,63 +6,31 @@ import playlistThree from './img/playlist03.png'
 import { useThemeContext } from '../theme/theme';
 import cn from 'classnames'
 
-export function SideBar({skeleton}) {
+export function SideBar({loading}) {
     const {theme} = useThemeContext();
-
-    const main = cn(
-        styles.main,
-        styles[theme.name]
-    );
-    const personal = cn(
-        styles.personal
-    );
-    const personalName = cn(
-        styles.personalName
-    );
-    const avatar = cn(
-        styles.avatar
-    );
-    const block = cn(
-        styles.block
-    );
-    const list = cn(
-        styles.list
-    );
-    const item = cn(
-        styles.item
-    );
-    const link = cn(
-        styles.link
-    );
-    const img = cn(
-        styles.img
-    );
-
-    
-    if (skeleton) {return <SideBarSkeleton/>}
+ 
+    if (loading) {return <SideBarSkeleton/>}
     return(
-        <div className={main}>
-        <div className={personal}>
-                        <p className={personalName}>Sergey.Ivanov</p>
-                        <div className={avatar}>
-                            
-                        </div>
-                    </div>
-                    <div className={block}>
-                        <div className={list}>
-                            <div className={item}>
-                                <a className={link} href="#">
-                                    <img className={img} src={playlistOne}  alt="day's playlist" />
+        <div className={cn(styles.main,styles[theme.name])}>
+        <div className={cn(styles.personal)}>
+                <p className={cn(styles.personalName)}>Sergey.Ivanov</p>
+                 <div className={cn(styles.avatar)}> </div>
+        </div>
+                    <div className={cn(styles.block)}>
+                        <div className={cn(styles.list)}>
+                            <div className={cn(styles.item)}>
+                                <a className={cn(styles.link)} href="#">
+                                    <img className={cn(styles.img)} src={playlistOne}  alt="day's playlist" />
                                 </a>
                             </div>
-                            <div className={item}>
-                                <a className={link} href="#">
-                                    <img className={img} src={playlistTwo} alt="day's playlist" />
+                            <div className={cn(styles.item)}>
+                                <a className={cn(styles.link)} href="#">
+                                    <img className={cn(styles.img)} src={playlistTwo} alt="day's playlist" />
                                 </a>
                             </div>
-                            <div className={item}>
-                                <a className={link} href="#">
-                                    <img className={img} src={playlistThree} alt="day's playlist"/>
+                            <div className={cn(styles.item)}>
+                                <a className={cn(styles.link)} href="#">
+                                    <img className={cn(styles.img)} src={playlistThree} alt="day's playlist"/>
                                 </a>
                             </div>
                         </div>
