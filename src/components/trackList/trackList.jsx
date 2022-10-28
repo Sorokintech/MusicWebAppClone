@@ -7,61 +7,6 @@ import cn from 'classnames'
 export function TrackList({loading}) {
     const {theme} = useThemeContext();
 
-    // const content = cn(
-    //     styles.content,
-    //     styles[theme.name]
-    // );
-    // const item = cn(
-    //     styles.item
-    // );
-    // const track = cn(
-    //     styles.track
-    // );
-    // const title = cn(
-    //     styles.title
-    // );
-    // const titleImage = cn(
-    //     styles.titleImage
-    // );
-    // const titleSvg = cn(
-    //     styles.titleSvg
-    // );
-    // const themeColor = cn(
-    //     styles[theme.color]
-    // );
-    // const titleText = cn(
-    //     styles.titleText
-    // );
-    // const titleLink = cn(
-    //     styles.titleLink
-    // );
-    // const titleSpan = cn(
-    //     styles.titleSpan
-    // );
-    // const author = cn(
-    //     styles.author
-    // );
-    // const authorLink = cn(
-    //     styles.authorLink
-    // );
-    // const album = cn(
-    //     styles.album
-    // );
-    // const albumLink = cn(
-    //     styles.albumLink
-    // );
-    // const time = cn(
-    //     styles.time
-    // );
-    // const timeSvg = cn(
-    //     styles.timeSvg
-    // );
-    // const timeText = cn(
-    //     styles.timeText
-    // );
-
-
-
     if(loading) {return <TrackListSkeleton/>}
     return(
         <div className={cn(styles.content,styles[theme.name])}>
