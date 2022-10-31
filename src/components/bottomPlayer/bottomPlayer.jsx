@@ -1,85 +1,121 @@
-import { BottomPlayerSkeleton } from './bottomPlayer-skeleton'
-import Id from './img/sprite.svg'
+import { BottomPlayerSkeleton } from './skeleton/bottomPlayer-skeleton'
+import styles from './bottomPlayer.module.css'
+import { NoteIcon, PrevIcon,NextIcon,ShuffleIcon,LikeIcon,DislikeIcon, RepeatIcon, VolumeIcon, PauseIcon, PlayIcon } from '../icons.jsx'
+import { useRef, useState } from 'react';
+import { useThemeContext } from '../theme/theme';
+import mainSong from '../../music.mp3';
+import cn from 'classnames';
 
-export function BottomPlayer({skeleton}) {
-    if (skeleton) {return <BottomPlayerSkeleton/>}
-    return(
-        <div className="bar__content">
-                    <div className="bar__player-progress"></div>
-                    <div className="bar__player-block">
-                        <div className="bar__player player">
-                            <div className="player__controls">
-                                <div className="player__btn-prev">
-                                    <svg className="player__btn-prev-svg" alt="prev">
-                                        <use xlinkHref={`${Id}#icon-prev`} />
+export function BottomPlayer({loading}) {
+    const [playing, setPlaying] = useState(false);
+    const audioRef = useRef(null);
+    const inputRef = useRef(null)
+    const timer = useRef(null)
+    
+    const handleStart = () => {
+        timer.current = setInterval(playChange, 1000); 
+        setPlaying(true);
+        audioRef.current.play();
+    }
+  
+    const handleStop = () => {
+        clearInterval(timer.current)
+      setPlaying(false);
+      audioRef.current.pause();
+    };
+    const togglePlay = playing ? handleStop : handleStart;
+
+    function playChange() {
+        inputRef.current.max = audioRef.current.duration;
+        inputRef.current.value = audioRef.current.currentTime;
+    }
+    const {theme} = useThemeContext();
+
+    if (loading) {return <BottomPlayerSkeleton/>}
+    return (
+        <div>
+             <audio controls ref={audioRef} className={cn(styles.fake)}>
+                <source src={mainSong} type="audio/mpeg" />
+            </audio>
+        <div className={cn(styles.bar)}>
+            <div className={cn(styles.content,styles.bar,styles[theme.name])}>
+                    <div className={cn(styles.playerProgress)}>
+                    <input ref={inputRef} className={cn(styles.barProgressLine)} type="range" name="range" max={inputRef.current?.max} value={inputRef.current?.value ?? 0}/>
+                    </div>
+                        <div className={cn(styles.playerBlock)}>
+                            <div className={cn(styles.player)}>
+                                <div className={cn(styles.controls)}>
+                                    <div className={cn(styles.btnPrev)}>
+                                        <svg className={cn(styles.trackPlaySvg)}>
+                                            <PrevIcon className={cn(styles[theme.color])}/>
+                                        </svg>
+                                    </div>
+                                <div className={cn(styles.btnPlay)} onClick={togglePlay}>
+                                <svg className={cn(styles.trackPlaySvg)}>
+                                    {playing?<PauseIcon className={cn(styles[theme.color])}/>:<PlayIcon/>}
+                                </svg>
+                                </div>
+                                <div className={cn(styles.btnNext)}>
+                                    <svg className={cn(styles.trackPlaySvg)}>
+                                        <NextIcon className={cn(styles[theme.color])}/>
+                                    </svg>  
+                                </div>
+                                <div className={cn(styles.btnRepeat,styles.btnIcon)}>
+                                    <svg className={cn(styles.trackPlaySvg)}>
+                                        <RepeatIcon className={cn(styles[theme.color])}/>
                                     </svg>
                                 </div>
-                                <div className="player__btn-play _btn">
-                                    <svg className="player__btn-play-svg" alt="play">
-                                    <use xlinkHref={`${Id}#icon-play`} />
-                                    </svg>
-                                </div>
-                                <div className="player__btn-next">
-                                    <svg className="player__btn-next-svg" alt="next">
-                                    <use xlinkHref={`${Id}#icon-next`} />
-                                    </svg>
-                                </div>
-                                <div className="player__btn-repeat _btn-icon">
-                                    <svg className="player__btn-repeat-svg" alt="repeat">
-                                        <use xlinkHref={`${Id}#icon-repeat`} />
-                                    </svg>
-                                </div>
-                                <div className="player__btn-shuffle _btn-icon">
-                                    <svg className="player__btn-shuffle-svg" alt="shuffle">
-                                    <use xlinkHref={`${Id}#icon-shuffle`} />
-                                    </svg>
+                                <div className={cn(styles.btnShuffle,styles.btnIcon)} >
+                                    <svg className={cn(styles.trackPlaySvg)}>
+                                        <ShuffleIcon className={cn(styles[theme.color])}/>
+                                    </svg>                              
                                 </div>
                             </div>
-                            
-                            <div className="player__track-play track-play">
-                                <div className="track-play__contain">
-                                    <div className="track-play__image">
-                                        <svg className="track-play__svg" alt="music">
-                                        <use xlinkHref={`${Id}#icon-note`} />
+                            <div className={cn(styles.trackPlay)}>
+                                <div className={cn(styles.playContain)}>
+                                    <div className={cn(styles.trackPlayImage)}>
+                                        <svg className={cn(styles.trackNoteSvg)} alt="music">
+                                        <NoteIcon className={cn(styles[theme.color])}/>
                                         </svg>
                                     </div>
-                                    <div className="track-play__author">
-                                        <a className="track-play__author-link" href="http://">Ты та...</a>
+                                    <div className={cn(styles.trackPlayAuthor)}>
+                                        <a className={cn(styles.trackPlayAuthorLink)} href="http://">Ты та...</a>
                                     </div>
-                                    <div className="track-play__album">
-                                        <a className="track-play__album-link" href="http://">Баста</a>
+                                    <div className={cn(styles.trackPlayAlbum)}>
+                                        <a className={cn(styles.trackPlayAlbumLink)} href="http://">Баста</a>
                                     </div>
                                 </div>
 
-                                <div className="track-play__like-dis">
-                                    <div className="track-play__like _btn-icon">
-                                        <svg className="track-play__like-svg" alt="like">
-                                        <use xlinkHref={`${Id}#icon-like`} />
+                                <div className={cn(styles.trackPlayLikeDis)}>
+                                    <div className={cn(styles.trackPlayLike,styles.btnIcon)}>
+                                        <svg className={cn(styles.trackPlaySvg)}>
+                                            <LikeIcon className={cn(styles[theme.color])}/>
                                         </svg>
                                     </div>
-                                    <div className="track-play__dislike _btn-icon">
-                                        <svg className="track-play__dislike-svg" alt="dislike">
-                                        <use xlinkHref={`${Id}#icon-dislike`} />
+                                    <div className={cn(styles.trackPlayDislike,styles.btnIcon)}>
+                                        <svg className={cn(styles.trackPlaySvg)}>
+                                            <DislikeIcon className={cn(styles[theme.color])}/>
                                         </svg>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="bar__volume-block volume">
-                           <div className="volume__content">
-                                <div className="volume__image">
-                                    <svg className="volume__svg" alt="volume">
-                                    <use xlinkHref={`${Id}#icon-volume`} />
+                        <div className={cn(styles.volumeBlock)}>
+                           <div className={cn(styles.volumeContent)}>
+                                <div className={cn(styles.volumeImage)}>
+                                    <svg className={cn(styles.trackVolumeSvg)}>
+                                        <VolumeIcon className={cn(styles[theme.color])}/>
                                     </svg>
                                 </div>
-                                <div className="volume__progress _btn">
-                                    <input className="volume__progress-line _btn" type="range" name="range" />
+                                <div className={cn(styles.volumeProgress)}>
+                                    <input className={cn(styles.volumeProgressLine)} type="range" name="range" />
                                 </div>
-                                
                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
     ) 
 
 }
