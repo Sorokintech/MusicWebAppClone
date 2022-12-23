@@ -1,6 +1,8 @@
 import styles from './trackNav.module.css'
 import { useState } from 'react';
 import { useThemeContext } from '../theme/theme';
+import { filterByYear } from '../../store/slices/filter';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 
 const initialState = {author: false, year: false, genre: false}
@@ -10,6 +12,11 @@ export function TrackNavBar () {
 
     const toggleVisibility = (key) => () => setVisible({...initialState, [key]: !visible[key]});
     const {theme} = useThemeContext();
+
+    const dispatch = useDispatch();
+    const onYearFilter = (e) => {
+        dispatch(filterByYear((e.target).value));
+    };
 
     return (
         <div>
@@ -45,9 +52,9 @@ export function TrackNavBar () {
         {visible.year && (
             <div className ={cn(styles.year,styles.radio)}>
                 <div className={cn(styles.radio)}>
-                <input className ={cn(styles.btnText)} name="radio-btn"type="radio" id="new" value="Более новые"/>
-                <label className={cn(styles.firstRadio)} htmlFor="new">Более старые</label>
-                <input className ={cn(styles.btnText)} name="radio-btn" type="radio" id="old" value="Более старые"/>
+                <input className ={cn(styles.btnText)} name="radio-btn" type="radio" id="new" value="newest" onClick={onYearFilter}/>
+                <label className={cn(styles.firstRadio)} htmlFor="new">Более новые</label>
+                <input className ={cn(styles.btnText)} name="radio-btn" type="radio" id="old" value="oldest" onClick={onYearFilter}/>
                 <label htmlFor="old">Более старые</label>
                 </div>
             </div>

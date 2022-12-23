@@ -2,7 +2,7 @@ import './fonts/stylesheet.css';
 import Styles from './css/style.module.css'
 import { AppRoutes } from './routes';
 import { ThemeContext, themes } from './components/theme/theme';
-import { useState} from 'react';
+import { useState } from 'react';
 
 
 

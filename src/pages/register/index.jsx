@@ -1,9 +1,9 @@
 import styles from './style.module.css'
 import logoLight from '../../components/navbar/img/logo__light.png'
 import cn from 'classnames'
+// import { useSignUpQuery } from "../../store/services/index";
 
 export function Register () {
-
     return (
         <div className={cn(styles.main)}>
             <div className={cn(styles.menu)}>

@@ -1,16 +1,17 @@
 import { BottomPlayerSkeleton } from './skeleton/bottomPlayer-skeleton'
 import styles from './bottomPlayer.module.css'
 import { NoteIcon, PrevIcon,NextIcon,ShuffleIcon,LikeIcon,DislikeIcon, RepeatIcon, VolumeIcon, PauseIcon, PlayIcon } from '../icons.jsx'
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { useSelector} from 'react-redux';
 import { useThemeContext } from '../theme/theme';
-import mainSong from '../../music.mp3';
+
 import cn from 'classnames';
 
 export function BottomPlayer({loading}) {
     const [playing, setPlaying] = useState(false);
     const audioRef = useRef(null);
-    const inputRef = useRef(null)
-    const timer = useRef(null)
+    const inputRef = useRef(null);
+    const timer = useRef(null);
     
     const handleStart = () => {
         timer.current = setInterval(playChange, 1000); 
@@ -18,12 +19,12 @@ export function BottomPlayer({loading}) {
         audioRef.current.play();
     }
   
-    const handleStop = () => {
+    const handlePause = () => {
         clearInterval(timer.current)
-      setPlaying(false);
-      audioRef.current.pause();
+        setPlaying(false);
+        audioRef.current.pause();
     };
-    const togglePlay = playing ? handleStop : handleStart;
+    const togglePlay = playing ? handlePause : handleStart;
 
     function playChange() {
         inputRef.current.max = audioRef.current.duration;
@@ -31,11 +32,19 @@ export function BottomPlayer({loading}) {
     }
     const {theme} = useThemeContext();
 
+    const currentSong = useSelector((state) => state.player.currentTrackLink);
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.src = currentSong.track_file;
+            handleStart();
+        }
+    }, [currentSong, audioRef.current]);
+
+
     if (loading) {return <BottomPlayerSkeleton/>}
     return (
         <div>
-             <audio controls ref={audioRef} className={cn(styles.fake)}>
-                <source src={mainSong} type="audio/mpeg" />
+             <audio controls ref={audioRef} src={currentSong.track_file} className={cn(styles.fake)}>
             </audio>
         <div className={cn(styles.bar)}>
             <div className={cn(styles.content,styles.bar,styles[theme.name])}>
@@ -79,10 +88,10 @@ export function BottomPlayer({loading}) {
                                         </svg>
                                     </div>
                                     <div className={cn(styles.trackPlayAuthor)}>
-                                        <a className={cn(styles.trackPlayAuthorLink)} href="http://">Ты та...</a>
+                                        <a className={cn(styles.trackPlayAuthorLink)} href="http://">{currentSong.name}</a>
                                     </div>
                                     <div className={cn(styles.trackPlayAlbum)}>
-                                        <a className={cn(styles.trackPlayAlbumLink)} href="http://">Баста</a>
+                                        <a className={cn(styles.trackPlayAlbumLink)} href="http://">{currentSong.author}</a>
                                     </div>
                                 </div>
 

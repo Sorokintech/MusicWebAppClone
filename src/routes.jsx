@@ -9,14 +9,15 @@ import { MyCollection } from './pages/playlists/my-collection';
 import { ProtectedRoute } from './components/protected-route';
 
 export const AppRoutes = () => {
+    
     return (
         <Routes>
-            <Route path='/mycollection/playlists/:id' element={<ProtectedRoute redirectPath = '/login'> <Playlists/></ProtectedRoute>}/>
-            <Route path='/mycollection' element={<ProtectedRoute redirectPath = '/login'> <MyCollection/></ProtectedRoute>}/>
-            <Route path='/tracks' element={<ProtectedRoute redirectPath = '/login'> <Tracks/></ProtectedRoute>}/>
-            <Route path='/' element={<ProtectedRoute redirectPath = '/login'> <Main/></ProtectedRoute>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/>
+            <Route path='/mycollection/playlists/:id' element={<ProtectedRoute redirectPath = '/login' protected> <Playlists/></ProtectedRoute>}/>
+            <Route path='/mycollection' element={<ProtectedRoute redirectPath = '/login' protected> <MyCollection/></ProtectedRoute>}/>
+            <Route path='/tracks' element={<ProtectedRoute redirectPath = '/login' protected> <Tracks/></ProtectedRoute>}/>
+            <Route path='/' element={<ProtectedRoute redirectPath = '/login' protected> <Main/></ProtectedRoute>}/>
+            <Route path='/login' element={<ProtectedRoute redirectPath = '/'> <Login/> </ProtectedRoute> }/>
+            <Route path='/register' element={<ProtectedRoute redirectPath = '/'><Register/> </ProtectedRoute>}/>
             <Route path='*' element={<NotFound/>}/>
         </Routes>
     );
