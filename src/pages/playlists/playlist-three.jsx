@@ -13,7 +13,7 @@ import cn from 'classnames';
 
 
 
-export const MyCollection = () => {
+export const PlaylistThree = () => {
 
     const [pending, setPending] = useState(true);
         useEffect(() => {
@@ -29,7 +29,7 @@ export const MyCollection = () => {
                 <NavBar />
                     <div className={cn(styles.centerBlock,styles[theme.name])}>
                         <SearchBar />
-                        <TrackNavBar PlaylistName = {`Мой плейлист`}/>
+                        <TrackNavBar PlaylistName = {`Инди-заряд`}  />
                         <PlaylistTitle/>
                         <TrackList loading = {pending} />
                     </div>

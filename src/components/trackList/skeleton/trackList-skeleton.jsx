@@ -6,7 +6,7 @@ export function TrackListSkeleton() {
 
     return(
         <div className={cn(styles.content)}>
-            {Array.from(new Array(10)).map((_, key) => (
+            {Array.from(new Array(14)).map((_, key) => (
                     <div className={cn(styles.item) } key = {key}>
                         <div className={cn(styles.track)}>
                             <div className={cn(styles.title)}>

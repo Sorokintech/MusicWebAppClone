@@ -1,4 +1,3 @@
-import { BottomPlayerSkeleton } from './skeleton/bottomPlayer-skeleton'
 import styles from './bottomPlayer.module.css'
 import { NoteIcon, PrevIcon,NextIcon,ShuffleIcon,LikeIcon,DislikeIcon, RepeatIcon, VolumeIcon, PauseIcon, PlayIcon } from '../icons.jsx'
 import { useRef, useState, useEffect } from 'react';
@@ -7,7 +6,7 @@ import { useThemeContext } from '../theme/theme';
 
 import cn from 'classnames';
 
-export function BottomPlayer({loading}) {
+export function BottomPlayer() {
     const [playing, setPlaying] = useState(false);
     const audioRef = useRef(null);
     const inputRef = useRef(null);
@@ -41,7 +40,7 @@ export function BottomPlayer({loading}) {
     }, [currentSong, audioRef.current]);
 
 
-    if (loading) {return <BottomPlayerSkeleton/>}
+    if (!currentSong.name) {return ''}
     return (
         <div>
              <audio controls ref={audioRef} src={currentSong.track_file} className={cn(styles.fake)}>

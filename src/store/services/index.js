@@ -54,13 +54,13 @@ export const musicAppApi = createApi({
         //     query: () => `/catalog/track/${payload}/favorite/`,
         //     method: 'DELETE'
         // }),
-        // getPlaylistById:builder.query({
-        //     query: () => `/catalog/selection/${id}`,
-        // }),
+        getPlaylistById:builder.query({
+            query: (id) => `/catalog/selection/${id}`,
+        }),
         // getTrackById:builder.query({
         //     query: () => `/catalog/track/${id}`,
         // }),
     }),
 });
 
-export const  { useSignUpMutation, useGetTokenMutation, useGetAllTracksQuery }  = musicAppApi;
+export const  { useSignUpMutation, useGetTokenMutation, useGetAllTracksQuery, useGetPlaylistByIdQuery }  = musicAppApi;

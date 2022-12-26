@@ -1,7 +1,7 @@
 import styles from './main.module.css';
 import { PlaylistTitle } from '../../components/playlistTitle/playlistTitle.jsx';
 import { SearchBar } from '../../components/search/search.jsx';
-import { TrackList } from '../../components/trackList/trackList';
+import { TrackListPlaylist } from '../../components/trackList/trackListPlaylist';
 import { TrackNavBar } from '../../components/trackNav/trackNav.jsx';
 import { NavBar } from '../../components/navbar/navbar.jsx';
 import { SideBar } from '../../components/sideBar/sideBar';
@@ -13,7 +13,7 @@ import cn from 'classnames';
 
 
 
-export const MyCollection = () => {
+export const PlaylistOne = () => {
 
     const [pending, setPending] = useState(true);
         useEffect(() => {
@@ -29,9 +29,9 @@ export const MyCollection = () => {
                 <NavBar />
                     <div className={cn(styles.centerBlock,styles[theme.name])}>
                         <SearchBar />
-                        <TrackNavBar PlaylistName = {`Мой плейлист`}/>
+                        <TrackNavBar PlaylistName = {`Плейлист Дня`}  />
                         <PlaylistTitle/>
-                        <TrackList loading = {pending} />
+                        <TrackListPlaylist loading = {pending} />
                     </div>
                         <SideBar loading = {pending}/>
                         <BottomPlayer/>

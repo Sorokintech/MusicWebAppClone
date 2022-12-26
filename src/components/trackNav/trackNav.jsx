@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 
 const initialState = {author: false, year: false, genre: false}
-export function TrackNavBar () {
+export function TrackNavBar ({PlaylistName}) {
 
     const [visible, setVisible] = useState(initialState);
 
@@ -18,9 +18,10 @@ export function TrackNavBar () {
         dispatch(filterByYear((e.target).value));
     };
 
+
     return (
         <div>
-        <h2 className={cn(styles.h2,styles[theme.name])}>Треки</h2>
+        <h2 className={cn(styles.h2,styles[theme.name])}>{PlaylistName}</h2>
         <div className={cn(styles.center,styles[theme.name])}>
         <div className={cn(styles.title)}>Искать по:</div>
         <div>
@@ -31,16 +32,6 @@ export function TrackNavBar () {
                     <li className ={cn(styles.listItem,styles.btnText)}>Michael Jackson</li>
                     <li className ={cn(styles.listItem,styles.btnText)}>Calvin Harris</li>
                     <li className ={cn(styles.listItem,styles.btnText)}>Frank Sinatra</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Zhu</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Arctic Monkeys</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Michael Jackson</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Frank Sinatra</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Calvin Harris</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Zhu</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Arctic Monkeys</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Michael Jackson</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Frank Sinatra</li>
-                    <li className ={cn(styles.listItem,styles.btnText)}>Calvin Harris</li>
                     <li className ={cn(styles.listItem,styles.btnText)}>Zhu</li>
                     <li className ={cn(styles.listItem,styles.btnText)}>Arctic Monkeys</li>
                 </ul>

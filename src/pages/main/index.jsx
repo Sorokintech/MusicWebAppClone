@@ -29,12 +29,12 @@ export const Main = () => {
                 <NavBar />
                     <div className={cn(styles.centerBlock,styles[theme.name])}>
                         <SearchBar />
-                        <TrackNavBar />
+                        <TrackNavBar PlaylistName = {`Треки`}  />
                         <PlaylistTitle/>
-                        <TrackList loading = {pending} />
+                        <TrackList loading = {pending}/>
                     </div>
                         <SideBar loading = {pending}/>
-                        <BottomPlayer loading = {pending}/>
+                        <BottomPlayer/>
                         <Footer />
                     </div>
         </div>

@@ -2,7 +2,7 @@ import { TrackListSkeleton } from './skeleton/trackList-skeleton'
 import { NoteIcon, LikeIcon } from '../icons.jsx'
 import styles from './trackList.module.css'
 import { useThemeContext } from '../theme/theme';
-import { useGetAllTracksQuery} from '../../store/services';
+import { useGetPlaylistByIdQuery} from '../../store/services';
 // import { checkFavoriteTrack } from '../../utils/checkFavoriteTrack';
 import { filterByYear } from '../../utils/filterByYear';
 import { getAuthors, getGenres} from '../../store/slices/filter'
@@ -11,10 +11,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearTracksId, setTracksId, setCurrentTrack } from '../../store/slices/player';
 import cn from 'classnames';
 
-export function TrackList({loading}) {
+export function TrackListPlaylist({loading}) {
     const {theme} = useThemeContext();
     const dispatch = useDispatch();
-    const { data, isLoading, isSuccess } = useGetAllTracksQuery('');
+    const { data, isLoading, isSuccess } = useGetPlaylistByIdQuery(`3`); // тут неполучается строку передать, чтобы запрос был такой https://painassasin.online/catalog/selection/3/
 
     // const isPlaying = useSelector((state) => state.player.isPlaying);
     
