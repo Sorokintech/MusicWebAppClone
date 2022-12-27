@@ -55,7 +55,9 @@ export const musicAppApi = createApi({
         //     method: 'DELETE'
         // }),
         getPlaylistById:builder.query({
-            query: (id) => `/catalog/selection/${id}`,
+            query: (id) => ({
+                url: `/catalog/selection/${id}/`,
+            }),
         }),
         // getTrackById:builder.query({
         //     query: () => `/catalog/track/${id}`,

@@ -31,7 +31,7 @@ export const PlaylistOne = () => {
                         <SearchBar />
                         <TrackNavBar PlaylistName = {`Плейлист Дня`}  />
                         <PlaylistTitle/>
-                        <TrackListPlaylist loading = {pending} />
+                        <TrackListPlaylist loading = {pending} id = {'1'} />
                     </div>
                         <SideBar loading = {pending}/>
                         <BottomPlayer/>

@@ -1,7 +1,7 @@
 import styles from './main.module.css';
 import { PlaylistTitle } from '../../components/playlistTitle/playlistTitle.jsx';
 import { SearchBar } from '../../components/search/search.jsx';
-import { TrackList } from '../../components/trackList/trackList';
+import { TrackListPlaylist } from '../../components/trackList/trackListPlaylist';
 import { TrackNavBar } from '../../components/trackNav/trackNav.jsx';
 import { NavBar } from '../../components/navbar/navbar.jsx';
 import { SideBar } from '../../components/sideBar/sideBar';
@@ -31,7 +31,7 @@ export const PlaylistTwo = () => {
                         <SearchBar />
                         <TrackNavBar PlaylistName = {`100 Танцевальных Хитов`}  />
                         <PlaylistTitle/>
-                        <TrackList loading = {pending} />
+                        <TrackListPlaylist loading = {pending} id = {'2'} />
                     </div>
                         <SideBar loading = {pending}/>
                         <BottomPlayer/>

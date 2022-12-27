@@ -11,13 +11,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clearTracksId, setTracksId, setCurrentTrack } from '../../store/slices/player';
 import cn from 'classnames';
 
-export function TrackListPlaylist({loading}) {
+export function TrackListPlaylist({loading, id}) {
     const {theme} = useThemeContext();
     const dispatch = useDispatch();
-    const { data, isLoading, isSuccess } = useGetPlaylistByIdQuery(`3`); // тут неполучается строку передать, чтобы запрос был такой https://painassasin.online/catalog/selection/3/
-
-    // const isPlaying = useSelector((state) => state.player.isPlaying);
+    const { data, isLoading, isSuccess } = useGetPlaylistByIdQuery(id);
     
+    // const isPlaying = useSelector((state) => state.player.isPlaying);
     // const trackId = useSelector((state) => state.player.id);
     // const isShow = useSelector((state) => state.player.showPlayer);
 
@@ -30,11 +29,12 @@ export function TrackListPlaylist({loading}) {
         dispatch(clearTracksId());
     
         if (isSuccess) {
-          data?.map((track) => dispatch(setTracksId(track.id)));
-          data?.map((track) => dispatch(getGenres(track.genre)));
-          data?.map((track) => dispatch(getAuthors(track.author)));
+          Array.from(data)?.map((track) => dispatch(setTracksId(track.id)));
+          Array.from(data)?.map((track) => dispatch(getGenres(track.genre)));
+          Array.from(data)?.map((track) => dispatch(getAuthors(track.author)));
         }
-      }, [data]);
+        console.log(data);
+      }, [data?.items]);
     
 
     const formatDuration = (durationInSeconds) => {
@@ -56,7 +56,7 @@ export function TrackListPlaylist({loading}) {
         <div className={cn(styles.content,styles[theme.name])}>
 
 
-        {data
+        {data?.items
                 ?.filter(({ name }) =>
                     name.toLowerCase().includes(trackTitle)
                 )
