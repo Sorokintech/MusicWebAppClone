@@ -4,15 +4,18 @@ import getCookie from '../../utils/getCookie';
 
 const initialState = {
   token: '',
-  isLogin: Boolean(getCookie('username'))
+  isLogin: Boolean(getCookie('username')),
+  id: getCookie('id')  
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setLogin: (state) => {
+    setLogin: (state, action) => {
       state.isLogin = true;
+      state.id = action.payload.id;
+      console.log(action)
     },
     setLogout: (state) => {
       state.isLogin = false;

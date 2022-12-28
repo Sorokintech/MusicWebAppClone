@@ -17,11 +17,11 @@ export const filterSlice = createSlice({
   reducers: {
     getGenres: (state, action) => {
       if (action.payload) {
-        state.genres = state.genres.concat(action.payload);
+        state.genres = [...new Set(state.genres.concat(action.payload))];
       }
     },
     getAuthors: (state, action) => {
-      state.authors = state.authors.concat(action.payload);
+      state.authors = [...new Set(state.authors.concat(action.payload))];
     },
     filterByYear: (state, action) => {
       state.filterYearValue = action.payload;

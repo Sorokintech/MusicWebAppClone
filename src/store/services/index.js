@@ -46,14 +46,14 @@ export const musicAppApi = createApi({
         getFavoriteTracks:builder.query({
             query: () => "/catalog/track/favorite/all",
         }),
-        // addFavoriteTracks:builder.query({
-        //     query: () => `/catalog/track/${payload}/favorite/`,
-        //     method: 'POST'
-        // }),
-        // deleteFavoriteTracks:builder.query({
-        //     query: () => `/catalog/track/${payload}/favorite/`,
-        //     method: 'DELETE'
-        // }),
+        addFavoriteTracks:builder.query({
+            query: ({ ...payload }) => `/catalog/track/${payload}/favorite/`,
+            method: 'POST'
+        }),
+        deleteFavoriteTracks:builder.query({
+            query: ({ ...payload }) => `/catalog/track/${payload}/favorite/`,
+            method: 'DELETE'
+        }),
         getPlaylistById:builder.query({
             query: (id) => ({
                 url: `/catalog/selection/${id}/`,
@@ -65,4 +65,4 @@ export const musicAppApi = createApi({
     }),
 });
 
-export const  { useSignUpMutation, useGetTokenMutation, useGetAllTracksQuery, useGetPlaylistByIdQuery }  = musicAppApi;
+export const  { useSignUpMutation, useGetTokenMutation, useGetAllTracksQuery, useGetPlaylistByIdQuery, useAddFavoriteTracksMutation, useDeleteFavoriteTracksMutation }  = musicAppApi;

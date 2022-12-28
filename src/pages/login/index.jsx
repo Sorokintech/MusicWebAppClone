@@ -25,9 +25,10 @@ export function Login () {
     useEffect(() => {
         if (isSuccessGetToken) {
           document.cookie = `username=${data?.username}`;
+          document.cookie = `id =${data?.id}`;
           dispatch(setToken(token?.access));
           document.cookie = `token=${token?.refresh}`;
-          dispatch(setLogin());
+          dispatch(setLogin(data));
           history('/');
         }
       }, [isSuccessGetToken]);

@@ -33,7 +33,6 @@ export function TrackListPlaylist({loading, id}) {
           Array.from(data)?.map((track) => dispatch(getGenres(track.genre)));
           Array.from(data)?.map((track) => dispatch(getAuthors(track.author)));
         }
-        console.log(data);
       }, [data?.items]);
     
 
