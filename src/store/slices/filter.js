@@ -10,7 +10,6 @@ const initialState = {
   genres: [],
   authors: []
 };
-
 export const filterSlice = createSlice({
   name: 'filter',
   initialState,
@@ -51,4 +50,5 @@ export const filterSlice = createSlice({
 });
 
 export const { filterByYear, getGenres, getAuthors, deleteGenres, addFilterByGenre, addFilterByAuthor, deleteAuthors } = filterSlice.actions;
+
 export default filterSlice.reducer;

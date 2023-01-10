@@ -2,12 +2,33 @@ import './fonts/stylesheet.css';
 import Styles from './css/style.module.css'
 import { AppRoutes } from './routes';
 import { ThemeContext, themes } from './components/theme/theme';
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import { useRefreshTokenMutation} from './store/services';
+import { setToken } from './store/slices/auth';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 function App() {
   const [theme, setTheme] = useState(themes.dark);
+  console.log(useRefreshTokenMutation);
+  const [refreshToken, {data, isSuccess}]= useRefreshTokenMutation();
+  const token = useSelector(state => state.auth.token);
+  console.log(token);
+  useEffect(() => {
+    console.log(refreshToken);
+    if(token) {
+      refreshToken({refresh: token});
+  }
+}, [])
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(isSuccess) {
+      dispatch(setToken(data?.access));
+    }
+  }, [data, isSuccess])
+
 
   return (
     <ThemeContext.Provider value = {{

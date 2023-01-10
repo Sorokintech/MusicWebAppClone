@@ -5,6 +5,13 @@ export const musicAppApi = createApi({
     // tagTypes: ['Tracks'],
     baseQuery: fetchBaseQuery({
         baseUrl: "https://painassasin.online",  
+        prepareHeaders: (headers, { getState }) => {
+            const token = (getState()).auth.token;
+            if (token) {
+              headers.set('authorization', `Bearer ${token}`);
+            }
+            return headers;
+          }
     }), 
     endpoints: (builder) => ({
         signUp: builder.mutation({
@@ -28,7 +35,7 @@ export const musicAppApi = createApi({
                 body: payload
               })
         }),
-        refreshToken: builder.query({
+        refreshToken: builder.mutation({
             query: ({ ...payload }) => ({
                 url: '/user/token/refresh/',
                 method: 'POST',
@@ -44,13 +51,18 @@ export const musicAppApi = createApi({
             query: () => "/catalog/selection/",
         }),
         getFavoriteTracks:builder.query({
-            query: () => "/catalog/track/favorite/all",
+            query: () => ({
+                url: "/catalog/track/favorite/all", 
+                method: 'GET'
+            }),
         }),
-        addFavoriteTracks:builder.query({
-            query: ({ ...payload }) => `/catalog/track/${payload}/favorite/`,
-            method: 'POST'
+        addFavoriteTracks:builder.mutation({
+            query: ( payload ) => ({
+                url: `/catalog/track/${payload}/favorite/`,
+                method: 'POST'
+            })
         }),
-        deleteFavoriteTracks:builder.query({
+        deleteFavoriteTracks:builder.mutation({
             query: ({ ...payload }) => `/catalog/track/${payload}/favorite/`,
             method: 'DELETE'
         }),
@@ -59,10 +71,10 @@ export const musicAppApi = createApi({
                 url: `/catalog/selection/${id}/`,
             }),
         }),
-        // getTrackById:builder.query({
-        //     query: () => `/catalog/track/${id}`,
-        // }),
+        getTrackById:builder.query({
+            query: (id) => `/catalog/track/${id}`,
+        }),
     }),
 });
 
-export const  { useSignUpMutation, useGetTokenMutation, useGetAllTracksQuery, useGetPlaylistByIdQuery, useAddFavoriteTracksMutation, useDeleteFavoriteTracksMutation }  = musicAppApi;
+export const  { useSignUpMutation, useGetTokenMutation, useGetAllTracksQuery, useGetPlaylistByIdQuery, useAddFavoriteTracksMutation, useDeleteFavoriteTracksMutation, useGetFavoriteTracksQuery, useGetTrackByIdQuery, useRefreshTokenMutation }  = musicAppApi;

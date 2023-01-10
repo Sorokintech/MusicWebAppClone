@@ -2,30 +2,34 @@ import { TrackListSkeleton } from './skeleton/trackList-skeleton'
 import { NoteIcon, LikeIcon } from '../icons.jsx'
 import styles from './trackList.module.css'
 import { useThemeContext } from '../theme/theme';
-import { useGetPlaylistByIdQuery} from '../../store/services';
+import { useGetFavoriteTracksQuery } from '../../store/services';
 // import { checkFavoriteTrack } from '../../utils/checkFavoriteTrack';
-import { getAuthors,getGenres} from '../../store/slices/filter'
+import { getAuthors, getGenres} from '../../store/slices/filter'
 import { useEffect } from 'react';
-import {  useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { clearTracksId, setTracksId, setCurrentTrack } from '../../store/slices/player';
 import cn from 'classnames';
 
-export function TrackListPlaylist({loading, id}) {
+export function TrackListFav({loading}) {
     const {theme} = useThemeContext();
     const dispatch = useDispatch();
-    const { data, isLoading, isSuccess } = useGetPlaylistByIdQuery(id);
+    const { data, isLoading, isSuccess, refetch } = useGetFavoriteTracksQuery('');
+    const myUser = useSelector((state) => state.auth.id)
     
+    useEffect(() => {
+        refetch();
+    }, []);
 
     useEffect(() => {
         dispatch(clearTracksId());
+        
         if (isSuccess) {
-          Array.from(data)?.map((track) => dispatch(setTracksId(track.id)));
-          Array.from(data)?.map((track) => dispatch(getGenres(track.genre)));
-          Array.from(data)?.map((track) => dispatch(getAuthors(track.author)));
+          data?.map((track) => dispatch(setTracksId(track.id)));
+          data?.map((track) => dispatch(getGenres(track.genre)));
+          data?.map((track) => dispatch(getAuthors(track.author)));
         }
-      }, [data?.items]);
+      }, [data]);
     
-
     const formatDuration = (durationInSeconds) => {
         const minutes = (durationInSeconds / 60).toFixed(0);
         durationInSeconds = durationInSeconds % 60
@@ -37,7 +41,14 @@ export function TrackListPlaylist({loading, id}) {
                 dispatch(setCurrentTrack(source));
             }
       }
-
+      const HandleFavoriteClick = (stared_user, id) => () => {
+        console.log(stared_user, id)
+        if(stared_user.find( (user) => {user.id === myUser.id})) {
+            console.log('Удалил');
+        } else {
+            console.log('Добавил');
+        }
+      }
 
 
     if(loading || isLoading) {return <TrackListSkeleton/>}
@@ -45,8 +56,7 @@ export function TrackListPlaylist({loading, id}) {
         <div className={cn(styles.content,styles[theme.name])}>
 
 
-        {data?.items
-                .map(
+        {data?.map(
                     ({
                     id,
                     name,
@@ -54,8 +64,8 @@ export function TrackListPlaylist({loading, id}) {
                     album,
                     track_file,
                     duration_in_seconds,
-                    release_date
-                    // stared_user
+                    release_date,
+                    stared_user
                     }) => (
                         <div key={id} className={cn(styles.item)}>
                                 <div className={cn(styles.track)}>
@@ -77,9 +87,9 @@ export function TrackListPlaylist({loading, id}) {
                                     <div className={cn(styles.album)}>
                                         <a className={cn(styles.albumLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{album}</a>
                                     </div>
-                                    <div className={cn(styles.time)}>
+                                    <div className={cn(styles.time)} onClick={HandleFavoriteClick(stared_user, id)}>
                                         <svg className={cn(styles.timeSvg)} alt="time">
-                                            <LikeIcon className={cn(styles[theme.color])}/>
+                                            <LikeIcon className={cn(styles[theme.color])}/> 
                                         </svg>
                                         <span className={cn(styles.timeText)}>{formatDuration(duration_in_seconds)}</span>
                                     </div>

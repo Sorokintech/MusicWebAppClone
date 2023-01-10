@@ -1,7 +1,7 @@
 import styles from './main.module.css';
 import { PlaylistTitle } from '../../components/playlistTitle/playlistTitle.jsx';
 import { SearchBar } from '../../components/search/search.jsx';
-import { TrackList } from '../../components/trackList/trackList';
+import { TrackListFav } from '../../components/trackList/trackListFav';
 import { TrackNavBar } from '../../components/trackNav/trackNav.jsx';
 import { NavBar } from '../../components/navbar/navbar.jsx';
 import { SideBar } from '../../components/sideBar/sideBar';
@@ -31,7 +31,7 @@ export const MyCollection = () => {
                         <SearchBar />
                         <TrackNavBar PlaylistName = {`Мой плейлист`}/>
                         <PlaylistTitle/>
-                        <TrackList loading = {pending} />
+                        <TrackListFav loading = {pending} />
                     </div>
                         <SideBar loading = {pending}/>
                         <BottomPlayer/>

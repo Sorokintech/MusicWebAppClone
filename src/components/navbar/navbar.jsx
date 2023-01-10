@@ -30,7 +30,7 @@ export function NavBar() {
                         <ul className={cn(styles.list,styles[theme.name])}>
                             <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/`} className={cn(styles.link,styles[theme.name])}>Главное</NavLink></li>
                             <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/mycollection`} className={cn(styles.link,styles[theme.name])}>Мой плейлист</NavLink></li>
-                            <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/login`} className={cn(styles.link,styles[theme.name])}>Войти</NavLink></li>
+                            <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/login`} className={cn(styles.link,styles[theme.name])}>Выйти</NavLink></li>
                             <li className={cn(styles.item,styles[theme.name])} ><img src={theme.name === 'dark' ? DarkTheme : LightTheme} alt="theme" className={cn(styles.theme,)} onClick={toggleTheme}/></li>
                         </ul>
                     </div>
