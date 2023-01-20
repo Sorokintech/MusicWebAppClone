@@ -5,7 +5,7 @@ import { TrackListFav } from '../../components/trackList/trackListFav';
 import { TrackNavBar } from '../../components/trackNav/trackNav.jsx';
 import { NavBar } from '../../components/navbar/navbar.jsx';
 import { SideBar } from '../../components/sideBar/sideBar';
-import { BottomPlayer } from '../../components/bottomPlayer/bottomPlayer.jsx';
+// import { BottomPlayer } from '../../components/bottomPlayer/bottomPlayer.jsx';
 import { Footer } from '../../components/footer/footer';
 import { useEffect, useState } from 'react';
 import { useThemeContext } from '../../components/theme/theme';
@@ -34,7 +34,6 @@ export const MyCollection = () => {
                         <TrackListFav loading = {pending} />
                     </div>
                         <SideBar loading = {pending}/>
-                        <BottomPlayer/>
                         <Footer />
                     </div>
         </div>

@@ -147,7 +147,11 @@
     margin-right: 17px;
     fill: transparent;
     stroke: #696969;
-    background-color: var(--background-color)
+    background-color: var(--background-color);
+    cursor:pointer;
+  }
+  .timeSvg:hover{
+    stroke:var(--color);
   }
   
   .timeText {

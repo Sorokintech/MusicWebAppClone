@@ -5,7 +5,7 @@ import { TrackListPlaylist } from '../../components/trackList/trackListPlaylist'
 import { TrackNavBar } from '../../components/trackNav/trackNav.jsx';
 import { NavBar } from '../../components/navbar/navbar.jsx';
 import { SideBar } from '../../components/sideBar/sideBar';
-import { BottomPlayer } from '../../components/bottomPlayer/bottomPlayer.jsx';
+// import { BottomPlayer } from '../../components/bottomPlayer/bottomPlayer.jsx';
 import { Footer } from '../../components/footer/footer';
 import { useEffect, useState } from 'react';
 import { useThemeContext } from '../../components/theme/theme';
@@ -34,7 +34,7 @@ export const PlaylistTwo = () => {
                         <TrackListPlaylist loading = {pending} id = {'2'} />
                     </div>
                         <SideBar loading = {pending}/>
-                        <BottomPlayer/>
+                        {/* <BottomPlayer/> */}
                         <Footer />
                     </div>
         </div>

@@ -1,4 +1,4 @@
-import getCookie from './get-cookie';
+import getCookie from './getCookie';
 
 export const checkFavoriteTrack = (arr) => {
   const cookieUsername = getCookie('username');

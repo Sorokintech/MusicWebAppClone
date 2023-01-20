@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const musicAppApi = createApi({
     reducerPath: "musicAppApi",
-    // tagTypes: ['Tracks'],
+    tagTypes: ['Tracks'],
     baseQuery: fetchBaseQuery({
         baseUrl: "https://painassasin.online",  
         prepareHeaders: (headers, { getState }) => {
@@ -63,8 +63,10 @@ export const musicAppApi = createApi({
             })
         }),
         deleteFavoriteTracks:builder.mutation({
-            query: ({ ...payload }) => `/catalog/track/${payload}/favorite/`,
-            method: 'DELETE'
+            query: ( payload ) => ({
+                url: `/catalog/track/${payload}/favorite/`,
+                method: 'DELETE'
+        })
         }),
         getPlaylistById:builder.query({
             query: (id) => ({
@@ -74,6 +76,7 @@ export const musicAppApi = createApi({
         getTrackById:builder.query({
             query: (id) => `/catalog/track/${id}`,
         }),
+        invalidatesTags: ['Tracks']
     }),
 });
 

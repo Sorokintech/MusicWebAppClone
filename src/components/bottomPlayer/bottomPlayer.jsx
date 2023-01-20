@@ -6,17 +6,24 @@ import { useThemeContext } from '../theme/theme';
 
 import cn from 'classnames';
 
-export function BottomPlayer() {
+export function BottomPlayer () {
     const [playing, setPlaying] = useState(false);
     const audioRef = useRef(null);
     const inputRef = useRef(null);
     const timer = useRef(null);
+    let isPlaying = useSelector((state) => state.player.isPlaying);
+    if (isPlaying) {
+        audioRef.autoplay = true;
+      }
+
+
     
     const handleStart = () => {
         timer.current = setInterval(playChange, 1000); 
         setPlaying(true);
         audioRef.current.play();
-    }
+    };
+
   
     const handlePause = () => {
         clearInterval(timer.current)
@@ -36,14 +43,15 @@ export function BottomPlayer() {
         if (audioRef.current) {
             audioRef.current.src = currentSong.track_file;
             handleStart();
+            isPlaying = true;
         }
     }, [currentSong, audioRef.current]);
 
 
-    if (!currentSong.name) {return ''}
+    if (!currentSong.name && window.BeforeUnloadEvent) {return ''}
     return (
         <div>
-             <audio controls ref={audioRef} src={currentSong.track_file} className={cn(styles.fake)}>
+             <audio controls autoPlay="0"  ref={audioRef} src={currentSong.track_file} className={cn(styles.fake)}>
             </audio>
         <div className={cn(styles.bar)}>
             <div className={cn(styles.content,styles.bar,styles[theme.name])}>

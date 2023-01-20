@@ -14,6 +14,14 @@ export function NavBar() {
     const toggleVisibility = () => setVisible(!visible);
     
     const {theme, toggleTheme} = useThemeContext();
+
+    const logOut = () => {
+        console.log(document.cookie);
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+        document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+        location.reload();
+    }
     
     return (
         <nav className={cn(styles.nav,styles[theme.name])}>
@@ -30,8 +38,8 @@ export function NavBar() {
                         <ul className={cn(styles.list,styles[theme.name])}>
                             <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/`} className={cn(styles.link,styles[theme.name])}>Главное</NavLink></li>
                             <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/mycollection`} className={cn(styles.link,styles[theme.name])}>Мой плейлист</NavLink></li>
-                            <li className={cn(styles.item,styles[theme.name])}><NavLink to={`/login`} className={cn(styles.link,styles[theme.name])}>Выйти</NavLink></li>
-                            <li className={cn(styles.item,styles[theme.name])} ><img src={theme.name === 'dark' ? DarkTheme : LightTheme} alt="theme" className={cn(styles.theme,)} onClick={toggleTheme}/></li>
+                            <li className={cn(styles.item,styles.link,styles[theme.name])} onClick={logOut}> Выйти</li>
+                            <li className={cn(styles.item,styles[theme.name])}><img src={theme.name === 'dark' ? DarkTheme : LightTheme} alt="theme" className={cn(styles.theme,)} onClick={toggleTheme}/></li>
                         </ul>
                     </div>
                     )}

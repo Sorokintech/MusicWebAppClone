@@ -17,7 +17,7 @@ export function SearchBar() {
     <svg className={cn(styles.searchSvg)}>
             <SearchIcon className={cn(styles[theme.color])} />
     </svg>
-    <input className={cn(styles.searchText)} type="search" placeholder="Поиск" name="search" onChange={onChangeHandler}/>
+    <input className={cn(styles.searchText)} type="search" placeholder="Поиск" name="search" autoComplete='off' onChange={onChangeHandler}/>
 </div>
     )
 }

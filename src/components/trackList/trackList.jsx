@@ -1,5 +1,5 @@
 import { TrackListSkeleton } from './skeleton/trackList-skeleton'
-import { NoteIcon, LikeIcon } from '../icons.jsx'
+import { NoteIcon, LikeIcon, DislikeIcon } from '../icons.jsx'
 import styles from './trackList.module.css'
 import { useThemeContext } from '../theme/theme';
 import { 
@@ -10,7 +10,7 @@ import {
 // import { checkFavoriteTrack } from '../../utils/checkFavoriteTrack';
 import { filterByYear } from '../../utils/filterByYear';
 import { getAuthors, getGenres} from '../../store/slices/filter'
-import { useEffect } from 'react';
+import { useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearTracksId, setTracksId, setCurrentTrack } from '../../store/slices/player'; // setTrackId,
 import cn from 'classnames';
@@ -19,21 +19,15 @@ export function TrackList({loading}) {
     const {theme} = useThemeContext();
     const dispatch = useDispatch();
     const { data, isLoading, isSuccess, refetch } = useGetAllTracksQuery('');
-    const [addFavorite] = useAddFavoriteTracksMutation();
-    const [deleteFavorite] = useDeleteFavoriteTracksMutation('');
-    // const isPlaying = useSelector((state) => state.player.isPlaying);
-    
-    // data : dataDeleteFavorite, isLoading : isLoadingDeleteFavorite, isSuccess : isSuccessDeleteFavorite
-    // data : dataAddFavorite, isLoading : isLoadingFavorite, isSuccess : isSuccessFavorite
-    // const trackId = useSelector((state) => state.player.id);
-    // const isShow = useSelector((state) => state.player.showPlayer);
-
+    const [addFavorite, {isLoading: addLoading}] = useAddFavoriteTracksMutation();
+    const [deleteFavorite, {isLoading: deleteLoading}] = useDeleteFavoriteTracksMutation();
     const trackTitle = useSelector((state) => state.search.searchValue);
     const filterValue = useSelector((state) => state.filter.filterYearValue);
     const genresValue = useSelector((state) => state.filter.filterGenresValue);
     const authorsValue = useSelector((state) => state.filter.filterAuthorsValue);
     const myUser = useSelector((state) => state.auth.id)
     const auth = useSelector(state => state.auth)
+
 
     useEffect(() => {
         refetch();
@@ -62,31 +56,25 @@ export function TrackList({loading}) {
                 dispatch(setCurrentTrack(source));
             }
       }
+      const isFavorite = (stared_user) => {
+        return stared_user.find(({id}) =>  id === (+myUser) )
+    }
 
-
-    //   const HandleFavoriteClick = (stared_user, id) => () => {
-    //     stared_user.forEach((user) => { 
-    //         if (user.id === myUser) {
-    //             deleteFavorite(id);
-    //             console.log('Удален');
-    //         } else {
-    //             addFavorite(id);
-    //             console.log({id});
-    //             console.log('Добавлен');
-    //         }
-    //     } ) 
-    // }
     const HandleFavoriteClick = (stared_user, id) => () => {
-            if (stared_user.find(({id: userId}) => myUser === userId)) {
-                console.log(id);
-                deleteFavorite(id);
-               } else {
-                console.log(id);
-                addFavorite(id);
-               }
+        if(addLoading || deleteLoading) {
+            return
         } 
-        
-
+        if (isFavorite(stared_user)) {
+            console.log('Deleted');
+            deleteFavorite(id);
+            refetch()
+           } else {
+            addFavorite(id);
+            console.log('Added');
+            refetch()
+           }
+    };
+    
 
 
     if(loading || isLoading) {return <TrackListSkeleton/>}
@@ -139,8 +127,8 @@ export function TrackList({loading}) {
                                         <a className={cn(styles.albumLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{album}</a>
                                     </div>
                                     <div className={cn(styles.time)} onClick={HandleFavoriteClick(stared_user, id)}> 
-                                        <svg className={cn(styles.timeSvg)} alt="time">
-                                            <LikeIcon className={cn(styles[theme.color])}/> 
+                                        <svg  className={cn(styles.timeSvg)} alt="time">
+                                           {isFavorite(stared_user) ? <DislikeIcon  className={cn(styles[theme.color])}/> : <LikeIcon  className={cn(styles[theme.color])}/>}   
                                         </svg>
                                         <span className={cn(styles.timeText)}>{formatDuration(duration_in_seconds)}</span>
                                     </div>

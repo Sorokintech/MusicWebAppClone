@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import { useRefreshTokenMutation} from './store/services';
 import { setToken } from './store/slices/auth';
 import { useSelector, useDispatch } from 'react-redux';
+import { BottomPlayer } from './components/bottomPlayer/bottomPlayer';
+
 
 
 function App() {
@@ -13,15 +15,16 @@ function App() {
   console.log(useRefreshTokenMutation);
   const [refreshToken, {data, isSuccess}]= useRefreshTokenMutation();
   const token = useSelector(state => state.auth.token);
+  const dispatch = useDispatch();
   console.log(token);
   useEffect(() => {
     console.log(refreshToken);
     if(token) {
       refreshToken({refresh: token});
-  }
+
+  }     
 }, [])
 
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if(isSuccess) {
@@ -43,6 +46,7 @@ function App() {
           <div className= {`${Styles.wrapper} ${Styles[theme.name]}`}>
       <div className={`${Styles.container} ${Styles[theme.name]}`}>
         <AppRoutes />
+        <BottomPlayer/>
       </div>
     </div>
     </ThemeContext.Provider>
