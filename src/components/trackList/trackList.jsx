@@ -10,9 +10,9 @@ import {
 // import { checkFavoriteTrack } from '../../utils/checkFavoriteTrack';
 import { filterByYear } from '../../utils/filterByYear';
 import { getAuthors, getGenres} from '../../store/slices/filter'
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearTracksId, setTracksId, setCurrentTrack } from '../../store/slices/player'; // setTrackId,
+import { clearTracksId, setTracksId, setCurrentTrack, play, setTrackId } from '../../store/slices/player'; // setTrackId,
 import cn from 'classnames';
 
 export function TrackList({loading}) {
@@ -54,6 +54,8 @@ export function TrackList({loading}) {
       const toggleSongHandler = (source) => {
             return () => {
                 dispatch(setCurrentTrack(source));
+                dispatch(play(source));
+                dispatch(setTrackId(source.id))
             }
       }
       const isFavorite = (stared_user) => {
@@ -65,12 +67,10 @@ export function TrackList({loading}) {
             return
         } 
         if (isFavorite(stared_user)) {
-            console.log('Deleted');
             deleteFavorite(id);
             refetch()
            } else {
             addFavorite(id);
-            console.log('Added');
             refetch()
            }
     };
@@ -109,7 +109,7 @@ export function TrackList({loading}) {
                         <div key={id} className={cn(styles.item)}>
                                 <div className={cn(styles.track)}>
                                     <div className={cn(styles.title)}>
-                                        <div className={cn(styles.titleImage)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>
+                                        <div className={cn(styles.titleImage)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date })}>
                                             <svg className={cn(styles.titleSvg)} alt="music">
                                             <NoteIcon className={cn(styles[theme.color])}/>
                                             </svg>

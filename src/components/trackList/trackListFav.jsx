@@ -1,8 +1,8 @@
 import { TrackListSkeleton } from './skeleton/trackList-skeleton'
-import { NoteIcon, LikeIcon } from '../icons.jsx'
+import { NoteIcon, DislikeIcon } from '../icons.jsx'
 import styles from './trackList.module.css'
 import { useThemeContext } from '../theme/theme';
-import { useGetFavoriteTracksQuery } from '../../store/services';
+import { useGetFavoriteTracksQuery, useDeleteFavoriteTracksMutation} from '../../store/services';
 // import { checkFavoriteTrack } from '../../utils/checkFavoriteTrack';
 import { getAuthors, getGenres} from '../../store/slices/filter'
 import { useEffect } from 'react';
@@ -14,11 +14,13 @@ export function TrackListFav({loading}) {
     const {theme} = useThemeContext();
     const dispatch = useDispatch();
     const { data, isLoading, isSuccess, refetch } = useGetFavoriteTracksQuery('');
-    const myUser = useSelector((state) => state.auth.id)
+    // const myUser = useSelector((state) => state.auth.id)
+    const auth = useSelector(state => state.auth)
+    const [deleteFavorite, {isLoading: deleteLoading}] = useDeleteFavoriteTracksMutation();
     
     useEffect(() => {
         refetch();
-    }, []);
+    }, [auth.token]);
 
     useEffect(() => {
         dispatch(clearTracksId());
@@ -41,14 +43,19 @@ export function TrackListFav({loading}) {
                 dispatch(setCurrentTrack(source));
             }
       }
-      const HandleFavoriteClick = (stared_user, id) => () => {
-        console.log(stared_user, id)
-        if(stared_user.find( (user) => {user.id === myUser.id})) {
-            console.log('Удалил');
-        } else {
-            console.log('Добавил');
+
+      const HandleFavoriteClick = (id) => () => {
+        if(deleteLoading) {
+            return
         }
-      }
+        const idArray = [];
+        data.forEach(({id}) => idArray.push(id))
+        if (idArray.includes(id)) {
+            idArray.pop(id);
+            deleteFavorite(id);
+            refetch()
+           }
+    };
 
 
     if(loading || isLoading) {return <TrackListSkeleton/>}
@@ -64,8 +71,7 @@ export function TrackListFav({loading}) {
                     album,
                     track_file,
                     duration_in_seconds,
-                    release_date,
-                    stared_user
+                    release_date
                     }) => (
                         <div key={id} className={cn(styles.item)}>
                                 <div className={cn(styles.track)}>
@@ -87,9 +93,9 @@ export function TrackListFav({loading}) {
                                     <div className={cn(styles.album)}>
                                         <a className={cn(styles.albumLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{album}</a>
                                     </div>
-                                    <div className={cn(styles.time)} onClick={HandleFavoriteClick(stared_user, id)}>
+                                    <div className={cn(styles.time)} onClick={HandleFavoriteClick( id)}>
                                         <svg className={cn(styles.timeSvg)} alt="time">
-                                            <LikeIcon className={cn(styles[theme.color])}/> 
+                                        <DislikeIcon  className={cn(styles[theme.color])}/>
                                         </svg>
                                         <span className={cn(styles.timeText)}>{formatDuration(duration_in_seconds)}</span>
                                     </div>

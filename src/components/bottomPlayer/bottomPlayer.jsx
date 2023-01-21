@@ -1,12 +1,21 @@
 import styles from './bottomPlayer.module.css'
 import { NoteIcon, PrevIcon,NextIcon,ShuffleIcon,LikeIcon,DislikeIcon, RepeatIcon, VolumeIcon, PauseIcon, PlayIcon } from '../icons.jsx'
 import { useRef, useState, useEffect } from 'react';
-import { useSelector} from 'react-redux';
+import { useSelector, 
+    // useDispatch
+} from 'react-redux';
 import { useThemeContext } from '../theme/theme';
-
+import { useGetAllTracksQuery, 
+    // useAddFavoriteTracksMutation, 
+    // useDeleteFavoriteTracksMutation,
+} from '../../store/services';
+// import { playNextTrack } from '../../store/slices/player';
+// , playPrevTrack, shuffleTracks, sortTracks, repeatTrack
 import cn from 'classnames';
 
 export function BottomPlayer () {
+    const { data } = useGetAllTracksQuery('');
+    console.log(data);
     const [playing, setPlaying] = useState(false);
     const audioRef = useRef(null);
     const inputRef = useRef(null);
@@ -14,22 +23,25 @@ export function BottomPlayer () {
     let isPlaying = useSelector((state) => state.player.isPlaying);
     if (isPlaying) {
         audioRef.autoplay = true;
-      }
+      };
+    const trackId = useSelector((state) => state.player.id)
+    // const dispatch = useDispatch();
 
-
-    
     const handleStart = () => {
         timer.current = setInterval(playChange, 1000); 
         setPlaying(true);
         audioRef.current.play();
     };
-
   
     const handlePause = () => {
         clearInterval(timer.current)
         setPlaying(false);
         audioRef.current.pause();
     };
+    const handleNext = (id) => {
+        console.log(id);
+    };
+
     const togglePlay = playing ? handlePause : handleStart;
 
     function playChange() {
@@ -51,7 +63,7 @@ export function BottomPlayer () {
     if (!currentSong.name && window.BeforeUnloadEvent) {return ''}
     return (
         <div>
-             <audio controls autoPlay="0"  ref={audioRef} src={currentSong.track_file} className={cn(styles.fake)}>
+             <audio controls ref={audioRef} src={currentSong.track_file} className={cn(styles.fake)}>
             </audio>
         <div className={cn(styles.bar)}>
             <div className={cn(styles.content,styles.bar,styles[theme.name])}>
@@ -66,12 +78,12 @@ export function BottomPlayer () {
                                             <PrevIcon className={cn(styles[theme.color])}/>
                                         </svg>
                                     </div>
-                                <div className={cn(styles.btnPlay)} onClick={togglePlay}>
-                                <svg className={cn(styles.trackPlaySvg)}>
+                                <div className={cn(styles.btnPlay)} >
+                                <svg className={cn(styles.trackPlaySvg)} onClick={togglePlay}>
                                     {playing?<PauseIcon className={cn(styles[theme.color])}/>:<PlayIcon/>}
                                 </svg>
                                 </div>
-                                <div className={cn(styles.btnNext)}>
+                                <div className={cn(styles.btnNext)} onClick={handleNext(trackId )}>
                                     <svg className={cn(styles.trackPlaySvg)}>
                                         <NextIcon className={cn(styles[theme.color])}/>
                                     </svg>  

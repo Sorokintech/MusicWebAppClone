@@ -1,19 +1,24 @@
 import { TrackListSkeleton } from './skeleton/trackList-skeleton'
-import { NoteIcon, LikeIcon } from '../icons.jsx'
+import { NoteIcon, LikeIcon, DislikeIcon } from '../icons.jsx'
 import styles from './trackList.module.css'
 import { useThemeContext } from '../theme/theme';
-import { useGetPlaylistByIdQuery} from '../../store/services';
+import { useGetPlaylistByIdQuery, useAddFavoriteTracksMutation, 
+    useDeleteFavoriteTracksMutation,} from '../../store/services';
 // import { checkFavoriteTrack } from '../../utils/checkFavoriteTrack';
 import { getAuthors,getGenres} from '../../store/slices/filter'
-import { useEffect } from 'react';
-import {  useDispatch } from 'react-redux';
+import { useEffect} from 'react';
+import {  useSelector, useDispatch } from 'react-redux';
 import { clearTracksId, setTracksId, setCurrentTrack } from '../../store/slices/player';
 import cn from 'classnames';
 
 export function TrackListPlaylist({loading, id}) {
     const {theme} = useThemeContext();
     const dispatch = useDispatch();
-    const { data, isLoading, isSuccess } = useGetPlaylistByIdQuery(id);
+    const { data, isLoading, isSuccess,  refetch } = useGetPlaylistByIdQuery(id);
+    const [addFavorite, {isLoading: addLoading}] = useAddFavoriteTracksMutation();
+    const [deleteFavorite, {isLoading: deleteLoading}] = useDeleteFavoriteTracksMutation();
+    const myUser = useSelector((state) => state.auth.id)
+    const auth = useSelector(state => state.auth)
     
 
     useEffect(() => {
@@ -24,7 +29,9 @@ export function TrackListPlaylist({loading, id}) {
           Array.from(data)?.map((track) => dispatch(getAuthors(track.author)));
         }
       }, [data?.items]);
-    
+      useEffect(() => {
+        refetch();
+    }, [auth.token]);
 
     const formatDuration = (durationInSeconds) => {
         const minutes = (durationInSeconds / 60).toFixed(0);
@@ -38,6 +45,21 @@ export function TrackListPlaylist({loading, id}) {
             }
       }
 
+      const isFavorite = (stared_user) => {
+        return stared_user.find(({id}) =>  id === (+myUser) )
+    }
+      const HandleFavoriteClick = (stared_user, id) => () => {
+        if(addLoading || deleteLoading) {
+            return
+        } 
+        if (isFavorite(stared_user)) {
+            deleteFavorite(id);
+            refetch()
+           } else {
+            addFavorite(id);
+            refetch()
+           }
+    };
 
 
     if(loading || isLoading) {return <TrackListSkeleton/>}
@@ -54,8 +76,8 @@ export function TrackListPlaylist({loading, id}) {
                     album,
                     track_file,
                     duration_in_seconds,
-                    release_date
-                    // stared_user
+                    release_date,
+                    stared_user
                     }) => (
                         <div key={id} className={cn(styles.item)}>
                                 <div className={cn(styles.track)}>
@@ -77,9 +99,9 @@ export function TrackListPlaylist({loading, id}) {
                                     <div className={cn(styles.album)}>
                                         <a className={cn(styles.albumLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{album}</a>
                                     </div>
-                                    <div className={cn(styles.time)}>
+                                    <div className={cn(styles.time)} onClick={HandleFavoriteClick(stared_user, id)}>
                                         <svg className={cn(styles.timeSvg)} alt="time">
-                                            <LikeIcon className={cn(styles[theme.color])}/>
+                                        {isFavorite(stared_user) ? <DislikeIcon  className={cn(styles[theme.color])}/> : <LikeIcon  className={cn(styles[theme.color])}/>}   
                                         </svg>
                                         <span className={cn(styles.timeText)}>{formatDuration(duration_in_seconds)}</span>
                                     </div>
