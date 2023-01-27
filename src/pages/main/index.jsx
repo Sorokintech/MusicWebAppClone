@@ -11,8 +11,6 @@ import { useEffect, useState } from 'react';
 import { useThemeContext } from '../../components/theme/theme';
 import cn from 'classnames';
 
-
-
 export const Main = () => {
 
     const [pending, setPending] = useState(true);

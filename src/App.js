@@ -5,30 +5,28 @@ import { ThemeContext, themes } from './components/theme/theme';
 import { useEffect, useState } from 'react';
 import { useRefreshTokenMutation} from './store/services';
 import { setToken } from './store/slices/auth';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import getCookie from './utils/getCookie';
 import { BottomPlayer } from './components/bottomPlayer/bottomPlayer';
 
 
 
 function App() {
   const [theme, setTheme] = useState(themes.dark);
-  console.log(useRefreshTokenMutation);
   const [refreshToken, {data, isSuccess}]= useRefreshTokenMutation();
-  const token = useSelector(state => state.auth.token);
+  const refresh = getCookie('tokenRefresh'); // useSelector(state => state.auth.token);
   const dispatch = useDispatch();
-  console.log(token);
   useEffect(() => {
-    console.log(refreshToken);
-    if(token) {
-      refreshToken({refresh: token});
-
-  }     
-}, [])
+    if(refresh) {
+      refreshToken({refresh});
+    }     
+  }, [])
 
 
   useEffect(() => {
     if(isSuccess) {
       dispatch(setToken(data?.access));
+      document.cookie = `tokenAccess=${data?.access}`
     }
   }, [data, isSuccess])
 
@@ -37,18 +35,19 @@ function App() {
     <ThemeContext.Provider value = {{
       theme: theme,
       toggleTheme: () => {
-        if(theme.name !== 'light')
-        {setTheme(themes.light)}
-        else {
-        {setTheme(themes.dark)}}
+        if(theme.name !== 'light') {
+          setTheme(themes.light)
+        } else {
+          setTheme(themes.dark)
+        }
       }       
     }}>
-          <div className= {`${Styles.wrapper} ${Styles[theme.name]}`}>
-      <div className={`${Styles.container} ${Styles[theme.name]}`}>
-        <AppRoutes />
-        <BottomPlayer/>
+        <div className= {`${Styles.wrapper} ${Styles[theme.name]}`}>
+          <div className={`${Styles.container} ${Styles[theme.name]}`}>
+            <AppRoutes />
+            <BottomPlayer/>
+          </div>
       </div>
-    </div>
     </ThemeContext.Provider>
   )
   

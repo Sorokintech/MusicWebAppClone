@@ -25,9 +25,9 @@ export function NavBar() {
     
     return (
         <nav className={cn(styles.nav,styles[theme.name])}>
-                    <div className={cn(styles.logo,styles[theme.name])}>
+                    <div className={cn(styles.logo,styles[theme.name])}><NavLink to={`/`} className={cn(styles.link,styles[theme.name])}>
                         <img className={cn(styles.image,styles[theme.name])} src={theme.name === 'dark' ? logoDark : logoLight} alt="logo" />
-                    </div>
+                    </NavLink></div>
                     <div className={cn(styles.burger,styles[theme.name])} onClick={toggleVisibility}>
                         <span className={cn(styles.line,styles[theme.name])}></span>
                         <span className={cn(styles.line,styles[theme.name])}></span>

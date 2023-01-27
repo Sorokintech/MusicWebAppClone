@@ -8,10 +8,10 @@ export const musicAppApi = createApi({
         prepareHeaders: (headers, { getState }) => {
             const token = (getState()).auth.token;
             if (token) {
-              headers.set('authorization', `Bearer ${token}`);
+                headers.set('authorization', `Bearer ${token}`);
             }
             return headers;
-          }
+        }
     }), 
     endpoints: (builder) => ({
         signUp: builder.mutation({
@@ -44,7 +44,7 @@ export const musicAppApi = createApi({
         }),
         getAllTracks:builder.query({
                 query: () => ({
-                  url: '/catalog/track/all'
+                  url: '/catalog/track/all/'
                 }),
         }),
         getPlaylists:builder.query({
@@ -52,7 +52,7 @@ export const musicAppApi = createApi({
         }),
         getFavoriteTracks:builder.query({
             query: () => ({
-                url: "/catalog/track/favorite/all", 
+                url: "/catalog/track/favorite/all/", 
                 method: 'GET'
             }),
         }),
@@ -80,4 +80,4 @@ export const musicAppApi = createApi({
     }),
 });
 
-export const  { useSignUpMutation, useGetTokenMutation, useGetAllTracksQuery, useGetPlaylistByIdQuery, useAddFavoriteTracksMutation, useDeleteFavoriteTracksMutation, useGetFavoriteTracksQuery, useGetTrackByIdQuery, useRefreshTokenMutation }  = musicAppApi;
+export const  { useSignUpMutation, useGetTokenMutation, useGetAllTracksQuery, useGetPlaylistByIdQuery, useAddFavoriteTracksMutation, useDeleteFavoriteTracksMutation, useGetFavoriteTracksQuery, useGetTrackByIdQuery, useRefreshTokenMutation}  = musicAppApi;

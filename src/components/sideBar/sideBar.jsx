@@ -20,25 +20,25 @@ export function SideBar({loading}) {
                     <div className={cn(styles.block)}>
                         <div className={cn(styles.list)}>
                             <div className={cn(styles.item)}>
-                                <a className={cn(styles.link)} href=''>
+                                <div className={cn(styles.link)} href=''>
                                     <NavLink to={`/mycollection/playlists/playlist-of-the-day`}>
                                     <img className={cn(styles.img)} src={playlistOne} alt="day's playlist" />
                                     </NavLink>
-                                </a>
+                                </div>
                             </div>
                             <div className={cn(styles.item)}>
-                                <a className={cn(styles.link)} href="#">
+                                <div className={cn(styles.link)} href="#">
                                     <NavLink to={`/mycollection/playlists/best-dance-playlist`}>
                                     <img className={cn(styles.img)} src={playlistTwo} alt="day's playlist" />
                                     </NavLink>
-                                </a>
+                                </div>
                             </div>
                             <div className={cn(styles.item)}>
-                                <a className={cn(styles.link)} href="#">
+                                <div className={cn(styles.link)} href="#">
                                     <NavLink to={`/mycollection/playlists/indie-playlist`}>
                                     <img className={cn(styles.img)} src={playlistThree} alt="day's playlist"/>
                                     </NavLink>
-                                </a>
+                                </div>
                             </div>
                         </div>
                         </div>

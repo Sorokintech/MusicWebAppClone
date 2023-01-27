@@ -25,13 +25,13 @@ export function TrackList({loading}) {
     const filterValue = useSelector((state) => state.filter.filterYearValue);
     const genresValue = useSelector((state) => state.filter.filterGenresValue);
     const authorsValue = useSelector((state) => state.filter.filterAuthorsValue);
-    const myUser = useSelector((state) => state.auth.id)
-    const auth = useSelector(state => state.auth)
-
+    const myUser = useSelector((state) => state.auth.id)    
 
     useEffect(() => {
-        refetch();
-    }, [auth.token]);
+        if (!addLoading && !deleteLoading && !isLoading) {
+            refetch();
+        }
+    }, [addLoading, deleteLoading, isLoading]);
 
 
     useEffect(() => {
@@ -42,7 +42,7 @@ export function TrackList({loading}) {
           data?.map((track) => dispatch(getGenres(track.genre)));
           data?.map((track) => dispatch(getAuthors(track.author)));
         }
-      }, [data]);
+    }, [data]);
     
 
     const formatDuration = (durationInSeconds) => {
@@ -68,11 +68,9 @@ export function TrackList({loading}) {
         } 
         if (isFavorite(stared_user)) {
             deleteFavorite(id);
-            refetch()
-           } else {
+        } else {
             addFavorite(id);
-            refetch()
-           }
+        }
     };
     
 
@@ -109,22 +107,22 @@ export function TrackList({loading}) {
                         <div key={id} className={cn(styles.item)}>
                                 <div className={cn(styles.track)}>
                                     <div className={cn(styles.title)}>
-                                        <div className={cn(styles.titleImage)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date })}>
+                                        <div className={cn(styles.titleImage)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date, stared_user })}>
                                             <svg className={cn(styles.titleSvg)} alt="music">
                                             <NoteIcon className={cn(styles[theme.color])}/>
                                             </svg>
                                         </div>
                                         <div className={cn(styles.titleText)}>
-                                            <a className={cn(styles.titleLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{name} 
+                                            <a className={cn(styles.titleLink)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date, stared_user })}>{name} 
                                                 <span className={cn(styles.titleSpan)}></span>
                                             </a>
                                         </div>
                                     </div>
                                     <div className={cn(styles.author)}>
-                                        <a className={cn(styles.authorLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{author}</a>
+                                        <a className={cn(styles.authorLink)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date, stared_user })}>{author}</a>
                                     </div>
                                     <div className={cn(styles.album)}>
-                                        <a className={cn(styles.albumLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{album}</a>
+                                        <a className={cn(styles.albumLink)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date, stared_user })}>{album}</a>
                                     </div>
                                     <div className={cn(styles.time)} onClick={HandleFavoriteClick(stared_user, id)}> 
                                         <svg  className={cn(styles.timeSvg)} alt="time">

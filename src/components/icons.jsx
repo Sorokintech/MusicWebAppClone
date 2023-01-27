@@ -5,7 +5,7 @@ export const SearchIcon  = ({
     width="17" 
     height="18" 
     viewBox="0 0 17 18" 
-    fill='none' x
+    fill='none'
     // mlns="http://www.w3.org/2000/svg"
     >
     <path d="M11.9276 12.7748L15.37 17.0644" 

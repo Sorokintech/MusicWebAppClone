@@ -10,8 +10,7 @@ import { useSignUpMutation, useGetTokenMutation } from '../../store/services';
 export function Login () {
     const history = useNavigate();
     const [signUp, { data, isSuccess: isSuccessSingUp}]= useSignUpMutation();
-    const [getToken, { data: token, isSuccess: isSuccessGetToken }] =
-    useGetTokenMutation();
+    const [getToken, { data: token, isSuccess: isSuccessGetToken }] = useGetTokenMutation();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     function handleToRegister() {
@@ -27,7 +26,8 @@ export function Login () {
           document.cookie = `username=${data?.username}`;
           document.cookie = `id =${data?.id}`;
           dispatch(setToken(token?.access));
-          document.cookie = `token=${token?.refresh}`;
+          document.cookie = `tokenRefresh=${token?.refresh}`;
+          document.cookie = `tokenAccess=${token?.access}`
           dispatch(setLogin(data));
           history('/');
         }
@@ -43,8 +43,8 @@ export function Login () {
                     <img src={logoLight} alt="" />
                 </div>
                 <div className={cn(styles.inputs)}>
-                    <input className={cn(styles.login)} type="text" placeholder='Логин' value={email} onChange={(e) => setEmail(e.target.value)}/>
-                    <input className={cn(styles.password)} type="password" placeholder='Пароль' value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input className={cn(styles.login)} type="text" placeholder='Логин' defaultValue={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <input className={cn(styles.password)} type="password" placeholder='Пароль' defaultValue={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className={cn(styles.loginButtons)}>
                     <button className={cn(styles.buttonLogin)} onClick={signingUp}>Войти</button>

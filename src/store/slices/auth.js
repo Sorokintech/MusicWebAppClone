@@ -3,7 +3,7 @@ import getCookie from '../../utils/getCookie';
 
 
 const initialState = {
-  token: getCookie('token'),
+  token: getCookie('tokenAccess'),
   isLogin: Boolean(getCookie('username')),
   id: getCookie('id'),
 };
@@ -22,6 +22,7 @@ export const authSlice = createSlice({
     },
     setToken: (state, action) => {
       state.token = action.payload;
+      // console.log('action.payload', action.payload);
     }
   }
 });

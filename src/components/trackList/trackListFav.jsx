@@ -6,21 +6,21 @@ import { useGetFavoriteTracksQuery, useDeleteFavoriteTracksMutation} from '../..
 // import { checkFavoriteTrack } from '../../utils/checkFavoriteTrack';
 import { getAuthors, getGenres} from '../../store/slices/filter'
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { clearTracksId, setTracksId, setCurrentTrack } from '../../store/slices/player';
+import { useDispatch } from 'react-redux';
+import { clearTracksId, setTracksId, setCurrentTrack, setTrackId, play } from '../../store/slices/player';
 import cn from 'classnames';
 
 export function TrackListFav({loading}) {
     const {theme} = useThemeContext();
     const dispatch = useDispatch();
     const { data, isLoading, isSuccess, refetch } = useGetFavoriteTracksQuery('');
-    // const myUser = useSelector((state) => state.auth.id)
-    const auth = useSelector(state => state.auth)
     const [deleteFavorite, {isLoading: deleteLoading}] = useDeleteFavoriteTracksMutation();
     
     useEffect(() => {
-        refetch();
-    }, [auth.token]);
+        if (!deleteLoading && !isLoading) {
+            refetch();
+        }
+    }, [deleteLoading, isLoading]);
 
     useEffect(() => {
         dispatch(clearTracksId());
@@ -41,6 +41,8 @@ export function TrackListFav({loading}) {
       const toggleSongHandler = (source) => {
             return () => {
                 dispatch(setCurrentTrack(source));
+                dispatch(play(source));
+                dispatch(setTrackId(source.id))
             }
       }
 
@@ -48,13 +50,7 @@ export function TrackListFav({loading}) {
         if(deleteLoading) {
             return
         }
-        const idArray = [];
-        data.forEach(({id}) => idArray.push(id))
-        if (idArray.includes(id)) {
-            idArray.pop(id);
-            deleteFavorite(id);
-            refetch()
-           }
+        deleteFavorite(id);
     };
 
 
@@ -71,29 +67,30 @@ export function TrackListFav({loading}) {
                     album,
                     track_file,
                     duration_in_seconds,
-                    release_date
+                    release_date, 
+                    stared_user
                     }) => (
                         <div key={id} className={cn(styles.item)}>
                                 <div className={cn(styles.track)}>
                                     <div className={cn(styles.title)}>
-                                        <div className={cn(styles.titleImage)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>
+                                        <div className={cn(styles.titleImage)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date, stared_user })}>
                                             <svg className={cn(styles.titleSvg)} alt="music">
                                             <NoteIcon className={cn(styles[theme.color])}/>
                                             </svg>
                                         </div>
                                         <div className={cn(styles.titleText)}>
-                                            <a className={cn(styles.titleLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{name} 
+                                            <a className={cn(styles.titleLink)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date, stared_user })}>{name} 
                                                 <span className={cn(styles.titleSpan)}></span>
                                             </a>
                                         </div>
                                     </div>
                                     <div className={cn(styles.author)}>
-                                        <a className={cn(styles.authorLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{author}</a>
+                                        <a className={cn(styles.authorLink)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date, stared_user })}>{author}</a>
                                     </div>
                                     <div className={cn(styles.album)}>
-                                        <a className={cn(styles.albumLink)} onClick={toggleSongHandler({ track_file, name, author, duration_in_seconds, release_date })}>{album}</a>
+                                        <a className={cn(styles.albumLink)} onClick={toggleSongHandler({ id, track_file, name, author, duration_in_seconds, release_date, stared_user })}>{album}</a>
                                     </div>
-                                    <div className={cn(styles.time)} onClick={HandleFavoriteClick( id)}>
+                                    <div className={cn(styles.time)} onClick={HandleFavoriteClick(id)}>
                                         <svg className={cn(styles.timeSvg)} alt="time">
                                         <DislikeIcon  className={cn(styles[theme.color])}/>
                                         </svg>
