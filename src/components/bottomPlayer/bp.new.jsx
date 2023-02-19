@@ -12,7 +12,6 @@ import { playNextTrack, playPrevTrack, shuffleTracks, sortTracks, repeatTrack, s
 import cn from 'classnames';
 
 export function BottomPlayer () {
-    console.log('Плеер перерендерился');
     const [playing, setPlaying] = useState(false);
     const audioRef = useRef(null);
     const inputRef = useRef(null);
@@ -53,17 +52,7 @@ export function BottomPlayer () {
             audioRef.loop = true;
             dispatch(repeatTrack());
           };
-        
-        //   useEffect(() => {
-        //     if (isPlaying) {
-        //       audioRef.play().catch((e) => {
-        //         console.log(e);
-        //       });
-        //     } else {
-        //       audioRef.pause();
-        //     }
-        //   }, [isPlaying]);
-          // MY OLD CODE
+    
     function playChange() {
         inputRef.current.max = audioRef.current.duration;
         inputRef.current.value = audioRef.current.currentTime;
@@ -80,12 +69,6 @@ export function BottomPlayer () {
     };
     const togglePlay = playing ? handlePause : handleStart;
 
-
-    // const array = useSelector((state) => state.player.ids)
-    // const handleNext = (event) => {
-    //     event.stopImmediatePropagation();
-    //     console.log(array);
-    // };
 
     
 

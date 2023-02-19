@@ -14,7 +14,7 @@ export function SideBar({loading}) {
     return(
         <div className={cn(styles.main,styles[theme.name])}>
         <div className={cn(styles.personal)}>
-                <p className={cn(styles.personalName)}>Sergey.Ivanov</p>
+                <p className={cn(styles.personalName)}>Custom User</p>
                  <div className={cn(styles.avatar)}> </div>
         </div>
                     <div className={cn(styles.block)}>

@@ -9,6 +9,7 @@ import { useGetAllTracksQuery, useAddFavoriteTracksMutation, useDeleteFavoriteTr
 import cn from 'classnames';
 
 export function BottomPlayer () {
+
     const { data, refetch} = useGetAllTracksQuery('');
     // const { refetch : refetchFavorite} = useGetFavoriteTracksQuery('');
     const [playing, setPlaying] = useState(false);
@@ -16,6 +17,9 @@ export function BottomPlayer () {
     const inputRef = useRef(null);
     const timer = useRef(null);
     const auth = useSelector(state => state.auth)
+    const [isVolumeOn, setIsVolumeOn] = useState(true);
+    const [volumeValue, setVolumeValue] = useState(0.2);
+    const [prevVolumeValue, setPrevVolumeValue] = useState(0);
 
     useEffect(() => {
         refetch();
@@ -30,9 +34,11 @@ export function BottomPlayer () {
     let isPlaying = useSelector((state) => state.player.isPlaying);
     if (isPlaying) {
         audioRef.autoplay = true;
+        
       }
     const dispatch = useDispatch();
     const handleStart = () => {
+        
         timer.current = setInterval(playChange, 1000); 
         setPlaying(true);
         audioRef.current.play();
@@ -54,27 +60,31 @@ export function BottomPlayer () {
     useEffect(() => {
         if (audioRef.current) {
             audioRef.current.src = currentSong.track_file;
+            // audioRef.current.volume = volumeValue;
             handleStart();
             isPlaying = true;
         }
     }, [currentSong, audioRef.current]);
     
 
+
+
+    // NEXT PREV SHUFFLE REPEAT
+
+
+
+
     const Prev = () => {
-        console.log({pointer})
         const newPointer = pointer <= 0 ? trackIds.length - 1 : (pointer - 1) % (trackIds.length - 1);
         setPointer(newPointer);
-        console.log('Prev button clicked');  
         let newSong = data.find(track => track.id === trackIds[newPointer]);
         dispatch(playPrevTrack(trackIds.indexOf(trackId)))
         dispatch(setCurrentTrack(newSong));
         dispatch(play(newSong));
     };
-    // console.log({trackIds, trackId, pointer})
     const Next = () => {
         const newPointer = (pointer + 1) % trackIds.length;
         setPointer(newPointer);
-        console.log('Next button clicked');  
         let newSong = data.find(track => track.id === trackIds[newPointer]);
         dispatch(playNextTrack(trackIds.indexOf(trackId)))
         dispatch(setCurrentTrack(newSong));
@@ -82,11 +92,9 @@ export function BottomPlayer () {
         
     };
     const shuffle = () => {
-        console.log('Tracks has been shuffled');
         dispatch(shuffleTracks());
     };
     const sort = () => {
-        console.log('Tracks has been sorted');
         dispatch(sortTracks());
     }
     const isShuffle = useSelector((state) => state.player.isShuffle)
@@ -95,13 +103,10 @@ export function BottomPlayer () {
     }
     const ifRepeat = useSelector((state) => state.player.isRepeat)
     const onRepeat = () => {
-        console.log('Track is now on repeat');
         audioRef.current.loop = true;
         dispatch(repeatTrack());
-        console.log(audioRef);
     };
     const offRepeat = () => {
-        console.log('Track is now not on repeat')
         dispatch(repeatTrack());
         audioRef.current.loop = false;
     }
@@ -110,52 +115,60 @@ export function BottomPlayer () {
     }
 
 
+
+
+    /// LIKE DISLIKE
+   
+    
+
     const [addFavorite] = useAddFavoriteTracksMutation();
     const [deleteFavorite] = useDeleteFavoriteTracksMutation();
     const myUser = useSelector((state) => state.auth.id)
- // идея в том, чтобы достать список юзеров из обшего стейта, а не из стейта плеера. 
-    // const stars = data;
-    // console.log(stars);
-    // const currentTrackStaredUsers = () => {return data.find(({track}) => track.id === trackId)};
-    // console.log(currentTrackStaredUsers())
     let currentTrackStaredUsers = null;
-    const dataCheck = () => {
-        if(data) {
-            currentTrackStaredUsers =  data.find(track => track.id === trackId);
-        }
-    }
+
     const isFavorite = (myUser) => {
-        dataCheck();
         return currentTrackStaredUsers.stared_user.find(({id}) =>  id === (+myUser))
     };
-    // const HandleFavoriteClick = (trackId) => () => {
-    //     if (isFavorite()) {
-    //         deleteFavorite(trackId);
-    //         console.log('Track has been deleted from Favorite')
-    //        } else {
-    //         addFavorite(trackId);
-    //         console.log('Track has been added to Favorite')
-    //        }
-    //        refetch();
-    // };
+
     const likeClickHandler = (trackId) => {
             addFavorite(trackId);
-            console.log('Track has been added to Favorite')
             refetch();
     
     };
     const dislikeClickHandler = (trackId) => {
             deleteFavorite(trackId);
-            console.log('Track has been deleted from Favorite')
             refetch();
            
     };
     const likeHandler = (trackId) => () => {
         isFavorite(myUser);
-        console.log(isFavorite())
         isFavorite ?  likeClickHandler(trackId) : dislikeClickHandler(trackId);
     }
 
+
+    // VOLUME 
+    // useEffect(() => {
+    //     audioRef.current.volume === volumeValue;
+    // }, [currentSong, audioRef.current])
+        
+
+    const onVolumeChange = (e) => {
+        
+      if (!isVolumeOn) {
+        setIsVolumeOn(true);
+      }
+      setVolumeValue(Number((e.target).value));
+    };
+  
+    const onVolumeToggle = () => {
+      setIsVolumeOn(!isVolumeOn);
+      if (isVolumeOn) {
+        setPrevVolumeValue(volumeValue);
+        setVolumeValue(0);
+      } else {
+        setVolumeValue(prevVolumeValue);
+      }
+    };
 
     if (!currentSong.name && window.BeforeUnloadEvent) {return ''}
     return (
@@ -227,13 +240,13 @@ export function BottomPlayer () {
                         </div>
                         <div className={cn(styles.volumeBlock)}>
                            <div className={cn(styles.volumeContent)}>
-                                <div className={cn(styles.volumeImage)}>
+                                <div className={cn(styles.volumeImage)} onClick={() => onVolumeToggle()}>
                                     <svg className={cn(styles.trackVolumeSvg)}>
                                         <VolumeIcon className={cn(styles[theme.color])}/>
                                     </svg>
                                 </div>
                                 <div className={cn(styles.volumeProgress)}>
-                                    <input className={cn(styles.volumeProgressLine)} type="range" name="range" />
+                                    <input className={cn(styles.volumeProgressLine)} type="range" name="range" max="1" min="0" step="0.01" value={volumeValue} onChange={(e) => onVolumeChange(e)   }/>
                                 </div>
                            </div>
                         </div>
