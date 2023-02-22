@@ -77,6 +77,7 @@
         -ms-flex-pack: center;
             justify-content: center;
     margin-right: 17px;
+    cursor: pointer;
   }
   
   .titleSvg {
@@ -84,7 +85,7 @@
     height: 19px;
     fill: transparent;
     stroke: var(--logo);
-
+  
   }
   
   .titleLink {
@@ -146,7 +147,11 @@
     margin-right: 17px;
     fill: transparent;
     stroke: #696969;
-    background-color: var(--background-color)
+    background-color: var(--background-color);
+    cursor:pointer;
+  }
+  .timeSvg:hover{
+    stroke:var(--color);
   }
   
   .timeText {

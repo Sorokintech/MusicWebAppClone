@@ -5,13 +5,11 @@ import { TrackList } from '../../components/trackList/trackList';
 import { TrackNavBar } from '../../components/trackNav/trackNav.jsx';
 import { NavBar } from '../../components/navbar/navbar.jsx';
 import { SideBar } from '../../components/sideBar/sideBar';
-import { BottomPlayer } from '../../components/bottomPlayer/bottomPlayer.jsx';
+// import { BottomPlayer } from '../../components/bottomPlayer/bottomPlayer.jsx';
 import { Footer } from '../../components/footer/footer';
 import { useEffect, useState } from 'react';
 import { useThemeContext } from '../../components/theme/theme';
 import cn from 'classnames';
-
-
 
 export const Main = () => {
 
@@ -29,12 +27,12 @@ export const Main = () => {
                 <NavBar />
                     <div className={cn(styles.centerBlock,styles[theme.name])}>
                         <SearchBar />
-                        <TrackNavBar />
+                        <TrackNavBar PlaylistName = {`Треки`}  />
                         <PlaylistTitle/>
-                        <TrackList loading = {pending} />
+                        <TrackList loading = {pending}/>
                     </div>
                         <SideBar loading = {pending}/>
-                        <BottomPlayer loading = {pending}/>
+                        {/* <BottomPlayer/> */}
                         <Footer />
                     </div>
         </div>
