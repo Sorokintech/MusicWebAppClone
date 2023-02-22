@@ -18,7 +18,8 @@ export function BottomPlayer () {
     const timer = useRef(null);
     const auth = useSelector(state => state.auth)
     const [isVolumeOn, setIsVolumeOn] = useState(true);
-    const [volumeValue, setVolumeValue] = useState(0.2);
+    const default_volume = 0.2;
+    const [volumeValue, setVolumeValue] = useState(default_volume);
     const [prevVolumeValue, setPrevVolumeValue] = useState(0);
 
     useEffect(() => {
@@ -240,7 +241,7 @@ export function BottomPlayer () {
                         </div>
                         <div className={cn(styles.volumeBlock)}>
                            <div className={cn(styles.volumeContent)}>
-                                <div className={cn(styles.volumeImage)} onClick={() => onVolumeToggle()}>
+                                <div className={cn(styles.volumeImage)} onClick={onVolumeToggle}>
                                     <svg className={cn(styles.trackVolumeSvg)}>
                                         <VolumeIcon className={cn(styles[theme.color])}/>
                                     </svg>

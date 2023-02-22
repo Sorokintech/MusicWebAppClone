@@ -4,8 +4,6 @@ import styles from './trackList.module.css'
 import { useThemeContext } from '../theme/theme';
 import { useGetPlaylistByIdQuery, useAddFavoriteTracksMutation, 
     useDeleteFavoriteTracksMutation,} from '../../store/services';
-// import { checkFavoriteTrack } from '../../utils/checkFavoriteTrack';
-import { getAuthors,getGenres} from '../../store/slices/filter'
 import { useEffect} from 'react';
 import {  useSelector, useDispatch } from 'react-redux';
 import { clearTracksId, setTracksId, setCurrentTrack } from '../../store/slices/player';
@@ -24,9 +22,7 @@ export function TrackListPlaylist({loading, id}) {
     useEffect(() => {
         dispatch(clearTracksId());
         if (isSuccess) {
-          Array.from(data)?.map((track) => dispatch(setTracksId(track.id)));
-          Array.from(data)?.map((track) => dispatch(getGenres(track.genre)));
-          Array.from(data)?.map((track) => dispatch(getAuthors(track.author)));
+            dispatch(setTracksId(data[0].track.id))
         }
       }, [data?.items]);
       useEffect(() => {
@@ -54,11 +50,10 @@ export function TrackListPlaylist({loading, id}) {
         } 
         if (isFavorite(stared_user)) {
             deleteFavorite(id);
-            refetch()
-           } else {
+      } else {
             addFavorite(id);
-            refetch()
-           }
+      }
+      refetch()
     };
 
 

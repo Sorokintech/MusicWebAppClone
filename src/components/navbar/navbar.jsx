@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useThemeContext } from '../theme/theme';
 import styles from './navbar.module.css';
 import cn from 'classnames';
+import { logOut } from '../global';
 
 export function NavBar() {
     const [visible, setVisible] = useState(false);
@@ -14,13 +15,6 @@ export function NavBar() {
     const toggleVisibility = () => setVisible(!visible);
     
     const {theme, toggleTheme} = useThemeContext();
-
-    const logOut = () => {
-        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-        document.cookie = "id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-        location.reload();
-    }
     
     return (
         <nav className={cn(styles.nav,styles[theme.name])}>

@@ -35,11 +35,7 @@ function App() {
     <ThemeContext.Provider value = {{
       theme: theme,
       toggleTheme: () => {
-        if(theme.name !== 'light') {
-          setTheme(themes.light)
-        } else {
-          setTheme(themes.dark)
-        }
+        setTheme(theme.name !== 'light' ? themes.light : themes.dark)
       }       
     }}>
         <div className= {`${Styles.wrapper} ${Styles[theme.name]}`}>
