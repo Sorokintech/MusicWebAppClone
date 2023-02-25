@@ -7,7 +7,6 @@ import {
     useAddFavoriteTracksMutation, 
     useDeleteFavoriteTracksMutation,
 } from '../../store/services';
-// import { checkFavoriteTrack } from '../../utils/checkFavoriteTrack';
 import { filterByYear } from '../../utils/filterByYear';
 import { getAuthors, getGenres} from '../../store/slices/filter'
 import { useEffect } from 'react';
@@ -18,7 +17,7 @@ import cn from 'classnames';
 export function TrackList({loading}) {
     const {theme} = useThemeContext();
     const dispatch = useDispatch();
-    const { data, isLoading, isSuccess, refetch } = useGetAllTracksQuery('');
+    const { data, isLoading, isSuccess, refetch} = useGetAllTracksQuery('');
     const [addFavorite, {isLoading: addLoading}] = useAddFavoriteTracksMutation();
     const [deleteFavorite, {isLoading: deleteLoading}] = useDeleteFavoriteTracksMutation();
     const trackTitle = useSelector((state) => state.search.searchValue);
@@ -70,7 +69,8 @@ export function TrackList({loading}) {
             deleteFavorite(id);
         } else {
             addFavorite(id);
-        }
+        } 
+        refetch();
     };
     
 

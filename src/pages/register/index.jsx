@@ -5,10 +5,12 @@ import { setLogin, setToken } from '../../store/slices/auth';
 import { useSignUpMutation, useGetTokenMutation } from '../../store/services';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 
 export function Register () {
+const history = useNavigate();
 const [signUp, { data, isSuccess: isSuccessSingUp}]= useSignUpMutation();
 const [getToken, { data: token, isSuccess: isSuccessGetToken }] = useGetTokenMutation();
 const [email, setEmail] = useState();
@@ -42,8 +44,8 @@ function signingUp () {
                 </div>
                 <div className={cn(styles.inputs)}>
                     <input className={cn(styles.login)} type="text" placeholder='Логин' defaultValue={email} onChange={(e) => setEmail(e.target.value)}/>
-                    <input className={cn(styles.password)} type="text" placeholder='Пароль' defaultValue={password} onChange={(e) => setPassword(e.target.value)}/>
-                    <input className={cn(styles.repeat)} type="text" placeholder='Повторите пароль' defaultValue={passwordRepeat} onChange={(e) => setPasswordRepeat(e.target.value)}/>
+                    <input className={cn(styles.password)} type="password" placeholder='Пароль' defaultValue={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input className={cn(styles.repeat)} type="password" placeholder='Повторите пароль' defaultValue={passwordRepeat} onChange={(e) => setPasswordRepeat(e.target.value)}/>
                 </div>
                 <div className={cn(styles.button)}>
                     <button className={cn(styles.register)} onClick={signingUp}>Зарегистрироваться</button>

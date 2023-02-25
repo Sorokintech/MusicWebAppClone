@@ -3,12 +3,12 @@ import logoLight from '../../components/navbar/img/logo__light.png'
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import {useGetTokenMutation, useLoginMutation } from '../../store/services';
+import {useGetTokenMutation } from '../../store/services';
+
 
 
 export function Login () {
     const history = useNavigate();
-    const [login, {data}] = useLoginMutation();
     const [getToken, { data: token, isSuccess: isSuccessGetToken }] = useGetTokenMutation();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -16,14 +16,11 @@ export function Login () {
         history('/register');
     }
     const handleLogin = () => {
-        login({email, password})
         getToken({email, password})
         
     }
     useEffect(() => {
-        if (isSuccessGetToken) {
-          document.cookie = `username=${data?.username}`;
-          document.cookie = `id =${data?.id}`;
+        if (isSuccessGetToken) { 
           document.cookie = `tokenRefresh=${token?.refresh}`;
           document.cookie = `tokenAccess=${token?.access}`
           history('/');
