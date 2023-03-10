@@ -22,13 +22,4 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(musicAppApi.middleware),
 });
-// export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
-//   return configureStore({
-//     reducer: rootReducer,
 
-//     middleware: (getDefaultMiddleware) =>
-//       getDefaultMiddleware().concat(musicApi.middleware)
-//   });
-
-// export type RootState = ReturnType<typeof rootReducer>;
-// export type AppStore = ReturnType<typeof setupStore>

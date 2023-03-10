@@ -2,40 +2,31 @@ import styles from './style.module.css'
 import logoLight from '../../components/navbar/img/logo__light.png'
 import cn from 'classnames'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
-import { setLogin, setToken } from '../../store/slices/auth';
-import { useSignUpMutation, useGetTokenMutation } from '../../store/services';
+import { useEffect, useState } from 'react';
+import {useGetTokenMutation } from '../../store/services';
+
+
 
 export function Login () {
     const history = useNavigate();
-    const [signUp, { data, isSuccess: isSuccessSingUp}]= useSignUpMutation();
     const [getToken, { data: token, isSuccess: isSuccessGetToken }] = useGetTokenMutation();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     function handleToRegister() {
         history('/register');
     }
+    const handleLogin = () => {
+        getToken({email, password})
+        
+    }
     useEffect(() => {
-        if(isSuccessSingUp) {
-            getToken({email, password});
-        }
-    }, [isSuccessSingUp])
-    useEffect(() => {
-        if (isSuccessGetToken) {
-          document.cookie = `username=${data?.username}`;
-          document.cookie = `id =${data?.id}`;
-          dispatch(setToken(token?.access));
+        if (isSuccessGetToken) { 
           document.cookie = `tokenRefresh=${token?.refresh}`;
           document.cookie = `tokenAccess=${token?.access}`
-          dispatch(setLogin(data));
           history('/');
         }
       }, [isSuccessGetToken]);
-    const dispatch = useDispatch();
-    function signingUp () {
-        signUp({email, username:email, password})
-    }
+
     return (
         <div className={cn(styles.main)}>
             <div className={cn(styles.menu)}>
@@ -47,7 +38,7 @@ export function Login () {
                     <input className={cn(styles.password)} type="password" placeholder='Пароль' defaultValue={password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className={cn(styles.loginButtons)}>
-                    <button className={cn(styles.buttonLogin)} onClick={signingUp}>Войти</button>
+                    <button className={cn(styles.buttonLogin)} onClick={handleLogin}>Войти</button>
                     <button className={cn(styles.buttonRegister)} onClick={handleToRegister} >Зарегистрироваться</button>
                 </div>
             </div>
